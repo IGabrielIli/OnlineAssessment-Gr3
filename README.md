@@ -1,5 +1,5 @@
 # OnlineAssessment-Gr3
-Online Assessment Project - AOPSE
+Online Assessment Project - ADOPSE
 
 # MEMBERS
 Fotopoulou Nikoleta
@@ -10,8 +10,8 @@ Ilikidis Gavriil
 
 Karampakakis Panagiotis
 
-Oplopios Paris
+Oplopoios Paris
 
-# Product Owner-Professor
+# Product Owner / Professor
 
 Salampasis Michalis
