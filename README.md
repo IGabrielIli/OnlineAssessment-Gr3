@@ -1,7 +1,10 @@
-# OnlineAssessment-Gr3
+## OnlineAssessment-Gr3
 Online Assessment Project - ADOPSE
 
-# MEMBERS
+### Contributors
+[![GitHub contributors](https://contrib.rocks/image?repo=IGabrielIli/OnlineAssessment-Gr3)](https://github.com/IGabrielIli/OnlineAssessment-Gr3/graphs/contributors)
+
+## Members
 Fotopoulou Nikoleta
 
 Karachristos Georgios
@@ -12,6 +15,7 @@ Karampakakis Panagiotis
 
 Oplopoios Paris
 
-# Product Owner / Professor
+## Product Owner / Professor
 
 Salampasis Michalis
+
