@@ -1,4 +1,4 @@
-# OnlineAssTm3
+# OnlineAssessment-Gr3
 Online Assessment Project - AOPSE
 
 # MEMBERS
