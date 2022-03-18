@@ -51,6 +51,11 @@ class Board extends React.Component {
 
     return (
       <div>
+        <div>
+          <input type="radio" value="Male" name="gender" />
+          <input type="radio" value="Female" name="gender" />
+          <input type="radio" value="Other" name="gender" />
+        </div>
         <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}

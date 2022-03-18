@@ -1,0 +1,25 @@
+@startuml ADOPSE_uml
+!theme toy
+frame "Javascript" {
+  class Question {
+    -List<RadioButton> answer_buttons
+    -String question
+    ---
+    -void Render()
+  }
+  class QuestionGroup {
+    -List<Question> questions
+    -List<String> answer_description
+    ---
+    -void Render()
+  }
+  note right : Questions with same answers are grouped in this\nclass to avoid text duplication.
+  Question -* QuestionGroup
+}
+frame "C#" {
+
+}
+database "Database" {
+  
+}
+@enduml
