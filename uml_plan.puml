@@ -1,25 +1,23 @@
 @startuml ADOPSE_uml
 !theme toy
-frame "Javascript" {
+frame "Front end" {
+  enum ButtonType {
+    Radio
+    Checkbox
+  }
+  class Button {
+    -ButtonType buttonType
+    -String value
+
+  }
   class Question {
-    -List<RadioButton> answer_buttons
+    -ButtonType buttonType
+    -int buttonNum
+    -String[] buttonDescriptions
     -String question
     ---
-    -void Render()
+    -void render()
   }
-  class QuestionGroup {
-    -List<Question> questions
-    -List<String> answer_description
-    ---
-    -void Render()
-  }
-  note right : Questions with same answers are grouped in this\nclass to avoid text duplication.
-  Question -* QuestionGroup
-}
-frame "C#" {
-
-}
-database "Database" {
-  
+  ButtonType -up- Button
 }
 @enduml
