@@ -1,11 +1,11 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px roboto;
   margin: 20px;
+  color: white;
   background-color: #374b8c
 }
-
 .button {
-  background-color: #555555;
+  background-color: #272f5c;
   border: none;
   border-radius: 8px;
   color: white;

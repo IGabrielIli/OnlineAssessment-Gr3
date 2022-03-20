@@ -1,0 +1,10 @@
+body {
+    font: 14px roboto;
+    margin: 20px;
+    color: white;
+    background-color: #374b8c
+}
+label {
+    white-space: pre-wrap;
+    display: inline-block;
+}
