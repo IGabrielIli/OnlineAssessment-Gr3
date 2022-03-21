@@ -10,7 +10,7 @@ frame "Front end" {
     -String value
 
   }
-  class Question {
+  class TestQuestion {
     -ButtonType buttonType
     -int buttonNum
     -String[] buttonDescriptions
