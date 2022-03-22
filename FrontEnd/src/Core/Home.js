@@ -10,6 +10,11 @@ class Home extends React.Component {
                         Test
                     </button>
                 </Link>
+                <Link to="/dashboard">
+                    <button class="button">
+                        Dashboard
+                    </button>
+                </Link>
             </div>
         );
     }
