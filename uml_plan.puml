@@ -1,23 +1,36 @@
 @startuml ADOPSE_uml
 !theme toy
 frame "Front end" {
-  enum ButtonType {
-    Radio
-    Checkbox
+  class User {
+    -int id
+    -String name
+    -String email
+    -Role role
   }
-  class Button {
-    -ButtonType buttonType
-    -String value
-
+  class Question {
+    -int id
+    -String questionTxt
+    -int answersId
+    -QuestionType type
+    -int difficulty
+    -int ownerUserId
+    -int examId
   }
-  class TestQuestion {
-    -ButtonType buttonType
-    -int buttonNum
-    -String[] buttonDescriptions
-    -String question
-    ---
-    -void render()
+  class Exam {
+    -int id
+    -int examId
   }
-  ButtonType -up- Button
+  class Answers {
+    -int id
+    -String answerText
+    -bool isCorrect
+  }
+  class QuestionAnswers {
+    -int questionId
+    -int answerId
+  }
+  Answers -- QuestionAnswers
+  Question -- QuestionAnswers
+  Question -- Exam
 }
 @enduml
