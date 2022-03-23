@@ -7,7 +7,7 @@ class Test extends React.Component {
         return (
             <div>
                 <TestQuestion
-                    buttonType={AnswerButtonType[0]} 
+                    buttonType={AnswerButtonType[1]} 
                     buttonNum={4} 
                     buttonDesc={descs} 
                     questionDesc={"Test question?"}
