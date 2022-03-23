@@ -9,7 +9,7 @@ frame "Front end" {
   }
   class Question {
     -int id
-    -String questionTxt
+    -String questionText
     -int answersId
     -QuestionType type
     -int difficulty
@@ -19,6 +19,7 @@ frame "Front end" {
   class Exam {
     -int id
     -int examId
+    -String examName
   }
   class Answers {
     -int id
