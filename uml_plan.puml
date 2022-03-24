@@ -2,36 +2,44 @@
 !theme toy
 frame "Front end" {
   class User {
-    -int id
+    -int userId
     -String name
     -String email
-    -Role role
   }
   class Question {
-    -int id
+    -int questionId
     -String questionText
-    -int answersId
     -QuestionType type
     -int difficulty
-    -int ownerUserId
-    -int examId
   }
   class Exam {
-    -int id
     -int examId
+    -int ownerUserId
+    -int examMaxDifficulty
     -String examName
   }
+  class ExamQuestions {
+    -int examId
+    -int questionId
+  }
   class Answers {
-    -int id
+    -int answerId
+    -int questionId
     -String answerText
     -bool isCorrect
   }
-  class QuestionAnswers {
+  class UserSelectedAnswers {
+    -int userId
+    -int examId
     -int questionId
     -int answerId
   }
-  Answers -- QuestionAnswers
-  Question -- QuestionAnswers
-  Question -- Exam
+  Exam --> ExamQuestions
+  Question --> ExamQuestions
+  enum QuestionType {
+    CheckBox
+    Radio
+    Text
+  }
 }
 @enduml
