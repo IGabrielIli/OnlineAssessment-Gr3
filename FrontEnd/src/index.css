@@ -17,6 +17,52 @@ label {
   display: inline-block;
 }
 
+span {
+  font-size: 24px;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.assess {
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
+  border:black;
+  border-top: black;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-right: 14px;
+  min-height: 66vh;
+  max-height: 66vh;
+  background-color: ghostwhite;
+}
+
+.assesskid {
+}
+
+.assesskidbut {
+  float: right;
+  margin-right: 1.5%;
+  margin-top: 20px;
+}
+
+.assesskidname {
+  margin-top: 3px;
+  margin-left: 15px;
+  text-align:center;
+}
+
+.assesskiddate {
+  margin-left: 10px;
+}
+
+.assesskid:hover {
+  background-color: #ddd;
+}
+
 .sbb {
   float: left;
   color: black;
@@ -49,7 +95,8 @@ label {
   border-color: black;
   border-width: 3px;
   border-bottom-style: solid;
-  margin-top: 0;
+  position: sticky;
+  top: 0;
 }
 
 .header input {
