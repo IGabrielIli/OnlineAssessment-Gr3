@@ -1,6 +1,6 @@
 @startuml ADOPSE_uml
 !theme toy
-frame "Front end" {
+database "Backend" {
   class User {
     -int userId
     -String name
