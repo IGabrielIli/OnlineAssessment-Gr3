@@ -69,11 +69,12 @@ class Dashboard extends React.Component {
                       </a>
                   </div>
               </div>  
-              <div class="w3-sidebar w3-light-grey w3-bar-block" style={{width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black"}}>
+              <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
                 <a href="#exams" class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></a>
                 <a href="#questions" class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></a>
                 <a href="#calendar" class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></a>
-                <Link to="/help" class="sbb" style={{paddingLeft: "37px", marginTop: "440px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
+                
+                <Link to="/help" class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
                 
               </div>
               <div style={{marginLeft: "105px"}}><br/>

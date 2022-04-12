@@ -3,43 +3,83 @@
 database "Backend" {
   class User {
     -int userId
-    -String name
-    -String email
+    -String userName
+    -String userRealName
+    -String userEmail
+    -String userPassword
+    -String userProfilePicURL
+    -String userJobTitle
   }
   class Question {
     -int questionId
+    -String questionImageURL
     -String questionText
-    -QuestionType type
-    -int difficulty
+    -QuestionType questionType
+    -int questionDifficulty
   }
   class Exam {
     -int examId
-    -int ownerUserId
-    -int examMaxDifficulty
+    -int userId
+    -int examAverageDifficulty
+    -int examTimerSeconds
+    -int examQuestionAmount
     -String examName
+    -String examPassword
+    -String examCategory
+    -String examDescription
+    -Date examStartDate
+  }
+  class ExamKeywords {
+    -int examId
+    -int keywordId
+  }
+  class QuestionKeywords {
+    -int questionId
+    -int keywordId
+  }
+  class Keyword {
+    -int keywordId
+    -String keywordText
   }
   class ExamQuestions {
     -int examId
     -int questionId
   }
-  class Answers {
+  class Answer {
     -int answerId
     -int questionId
     -String answerText
     -bool isCorrect
   }
-  class UserSelectedAnswers {
-    -int userId
+  class UserAttempt {
+    -int attemptId
     -int examId
     -int questionId
     -int answerId
   }
-  Exam --> ExamQuestions
-  Question --> ExamQuestions
+  class UserAttemptDetails {
+    -int attemptId
+    -int userId
+    -DateTime2 attemptStart
+    -DateTime2 attemptEnd
+  }
   enum QuestionType {
     CheckBox
     Radio
-    Text
   }
+  Exam -up- ExamKeywords
+  Keyword -- ExamKeywords
+  Question -up- QuestionKeywords
+  Keyword -- QuestionKeywords
+  Exam -- ExamQuestions
+  Exam -- User
+  Question -- Answer
+  Question -- ExamQuestions
+  Question -left- QuestionType
+  User -- UserAttempt
+  Exam -- UserAttempt
+  Question -- UserAttempt
+  Answer -- UserAttempt
+  UserAttempt -- UserAttemptDetails
 }
 @enduml
