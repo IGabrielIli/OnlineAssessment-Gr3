@@ -6,6 +6,40 @@ import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg
 
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tab: "main"
+    };
+  }
+
+  onTabClick(id) {
+    this.setState({tab: id});
+  }
+
+  drawTabs() {
+    switch(this.state.tab) {
+      case "main":
+        return(
+        <div>
+            <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
+            <span style={{marginLeft:"45px"}}>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own assessments</Link> or <Link to="#create">create one now</Link></span><br/><br/>
+            <hr class="solid"/>
+            <h2 style={{marginLeft: "25px"}}>Recent assessments</h2>
+            <div class="assess">
+              {this.drawAssessments()}
+            </div>
+        </div>
+        );
+      case "exams":
+        return(<div></div>);
+      case "questions":
+      case "calendar":
+        return (<div></div>);
+      case "help":
+        return (<center>Test</center>);
+    }
+  }
 
   drawAssessments() {
     var indents = [];
@@ -52,7 +86,7 @@ class Dashboard extends React.Component {
         <div class="app">
           <div>
               <div class="header">
-                  <a href="../" class="logo">{fetchDynamicItem(DBType.PROJECT_TITLE)}</a>
+                <Link to="#main" onClick={() => this.onTabClick("main")} class="logo">{fetchDynamicItem(DBType.PROJECT_TITLE)}</Link>
                   <div class="header-right" style={{marginRight: "2%"}}>
                       <input class="text" type="text" placeholder="Search..." />
                       <a href="#" class="but">
@@ -79,21 +113,13 @@ class Dashboard extends React.Component {
                 </div>
               </div>
               <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
-                <a href="#exams" class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></a>
-                <a href="#questions" class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></a>
-                <a href="#calendar" class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></a>
-
-                <Link to="/help" class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
-
+                <Link to="#exams" onClick={() => this.onTabClick("main")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></Link>
+                <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
+                <Link to="#calendar" onClick={() => this.onTabClick("calendar")} class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></Link>
+                <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
               </div>
               <div style={{marginLeft: "105px"}}><br/>
-                <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
-                <span style={{marginLeft:"45px"}}>Learn <Link to="/help">how to create your own assessments</Link> or <Link to="/create">create one now</Link></span><br/><br/>
-                <hr class="solid"/>
-                <h2 style={{marginLeft: "25px"}}>Recent assessments</h2>
-                <div class="assess">
-                  {this.drawAssessments()}
-                </div>
+                {this.drawTabs()}
               </div>
             </div>
         </div>
