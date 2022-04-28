@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
           <span class="assesskidname">
             <Link to={link}>{fetchDynamicItem(DBType.ASSESSMENT_NAME)}</Link>
             <span class="assesskidbut">
-              
+
               <FontAwesomeIcon icon={faEllipsis} />
             </span>
             <span class="assesskidbut">
@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
             <br/>
             <span class="assesskiddate">Date created: {fetchDynamicItem(DBType.ASSESSMENT_DATE)}</span>
           </span>
-          
+
           <br/>
           <br/>
         </div>
@@ -67,15 +67,18 @@ class Dashboard extends React.Component {
                           <i class="fa fa-user fa-stack-1x" style={{color: "white"}}></i>
                         </span>
                       </a>
+                      <a href="#" class="3dots">
+                      <i class="fa fa-user" style={{color:"black"}}></i>
+                      </a>
                   </div>
-              </div>  
+              </div>
               <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
                 <a href="#exams" class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></a>
                 <a href="#questions" class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></a>
                 <a href="#calendar" class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></a>
-                
+
                 <Link to="/help" class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
-                
+
               </div>
               <div style={{marginLeft: "105px"}}><br/>
                 <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
@@ -93,7 +96,7 @@ class Dashboard extends React.Component {
   w3_open() {
     document.getElementById("mySidebar").style.display = "block";
   }
-  
+
   w3_close() {
     document.getElementById("mySidebar").style.display = "none";
   }

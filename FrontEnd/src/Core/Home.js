@@ -7,7 +7,7 @@ class Home extends React.Component {
             <div class="div_home">
                 <Link to="/t">
                     <button class="button">
-                        Test
+                        dsadsad
                     </button>
                 </Link>
                 <Link to="/dashboard">
