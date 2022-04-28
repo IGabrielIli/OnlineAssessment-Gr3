@@ -67,10 +67,16 @@ class Dashboard extends React.Component {
                           <i class="fa fa-user fa-stack-1x" style={{color: "white"}}></i>
                         </span>
                       </a>
-                      <a href="#" class="3dots">
-                      <i class="fa fa-user" style={{color:"black"}}></i>
+                      <a href='#' class="menu">
+                        <div class="kebab-menu">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
                       </a>
-                  </div>
+                </div>
               </div>
               <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
                 <a href="#exams" class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></a>
