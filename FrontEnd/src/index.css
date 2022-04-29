@@ -7,7 +7,6 @@ html {
 
 body {
   font: 14px roboto;
-  margin: 0px;
   color: black;
   background-color: white;
 }
@@ -103,14 +102,13 @@ hr.solid {
   line-height: 10px;
 }
 
-input[type=text] {
+.search input[type=text] {
   background-color: white;
   background-image: url('./searchicon.png');
-  background-position: 10px 10px;
+  background-position: 10px 6px;
   background-repeat: no-repeat;
   padding-left: 40px;
-  max-height: 40px;
-  margin-top: 13px;
+  margin-top: 8px;
   margin-right: 20px;
 }
 
@@ -164,6 +162,10 @@ input[type=text] {
   }
 }
 
+.question_tab {
+  padding-left: 25px;
+}
+
 .button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -189,7 +191,7 @@ input[type=text] {
 .container {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 50px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -201,44 +203,43 @@ input[type=text] {
 
 .container input {
   position: absolute;
-  opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
 
-.checkbox {
+.checkmark {
   position: absolute;
-  top: 0;
+  top: 4px;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   background-color: #eee;
 }
 
-.container:hover input ~ .checkbox {
+.container .checkmark:hover {
   background-color: #ccc;
 }
 
-.container input:checked ~ .checkbox {
+.container input:checked ~ .checkmark {
   background-color: #2196F3;
 }
 
-.checkbox:after {
+.checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.container input:checked ~ .checkbox:after {
+.container input:checked ~ .checkmark:after {
   display: block;
 }
 
-.container .checkbox:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
+.container .checkmark:after {
+  left: 14px;
+  top: 7px;
+  width: 8px;
+  height: 17px;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -246,39 +247,17 @@ input[type=text] {
   transform: rotate(45deg);
 }
 
-.radio {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
+.container .answer {
+  width: 30%;
+  padding: 12px 12px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  padding: 20px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
 }
 
-.container:hover input ~ .radio {
-  background-color: #ccc;
-}
-
-.container input:checked ~ .radio {
-  background-color: #2196F3;
-}
-
-.radio:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.container input:checked ~ .radio:after {
-  display: block;
-}
-
-.container .radio:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
+.container .answer:focus {
+  border: 3px solid #555;
 }

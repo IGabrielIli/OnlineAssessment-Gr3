@@ -4,12 +4,15 @@ import { DBType, fetchDynamicItem } from './Interact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 
+let answersSize = 1;
+let answersArray = [''];
+let selectedArray = [0];
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "main"
+      tab: "main",
     };
   }
 
@@ -32,12 +35,33 @@ class Dashboard extends React.Component {
         </div>
         );
       case "exams":
-        return(<div></div>);
+        return(
+        <div>
+
+        </div>
+        );
       case "questions":
+        return(
+        <div class="question_tab">
+          {this.drawCurrentAnswers()}
+          <br/><br/>
+          <div>
+            <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
+          </div>
+        </div>
+        );
       case "calendar":
-        return (<div></div>);
+        return (
+        <div>
+          
+        </div>
+        );
       case "help":
-        return (<center>Test</center>);
+        return(
+        <div>
+
+        </div>
+        );
     }
   }
 
@@ -47,6 +71,44 @@ class Dashboard extends React.Component {
       indents.push(this.drawAssessment());
     }
     return indents;
+  }
+
+  drawCurrentAnswers() {
+    var indents = [];
+    for (var i = 0; i < answersSize; i++) {
+      indents.push(this.drawAnswer(i));
+    }
+    return indents;
+  }
+
+  drawAnswer(id) {
+    return (
+      <div>
+        <label class="container">
+          <input type="checkbox" onChange={ (e) => this.handleSelectedChange(e, id) } />
+          <span class="checkmark" style={{marginRight:"28px"}} />
+          <input type="text" class="answer" onChange={ (e) => this.handleAnswerChange(e, id) }/>
+        </label>
+        <br/><br/><br/>
+      </div>
+    )
+  }
+
+  handleAddAnswer() {
+    answersSize++;
+    answersArray.push('');
+    selectedArray.push(false);
+    this.setState(this.state);
+  }
+
+  handleSelectedChange(e, id) {
+    selectedArray[id] = e.target.checked;
+    // console.log(selectedArray[id]);
+  }
+
+  handleAnswerChange(e, id) {
+    answersArray[id] = e.target.value;
+    // console.log(answersArray[id]);
   }
 
   drawAssessment(id) {
@@ -88,7 +150,7 @@ class Dashboard extends React.Component {
               <div class="header">
                 <Link to="#main" onClick={() => this.onTabClick("main")} class="logo">{fetchDynamicItem(DBType.PROJECT_TITLE)}</Link>
                   <div class="header-right" style={{marginRight: "2%"}}>
-                      <input class="text" type="text" placeholder="Search..." />
+                      <div class="search"><input type="text" placeholder="Search..." /></div>
                       <a href="#" class="but">
                         <span class="fa-stack" style={{fontSize:"28px"}}>
                           <i class="fa fa-circle fa-stack-2x" style={{color:"black"}}></i>
@@ -101,13 +163,10 @@ class Dashboard extends React.Component {
                           <i class="fa fa-user fa-stack-1x" style={{color: "white"}}></i>
                         </span>
                       </a>
-                      <a href="#" class="3dots">
-                      <i class="fa fa-user" style={{color:"black"}}></i>
-                      </a>
                   </div>
               </div>
               <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
-                <Link to="#exams" onClick={() => this.onTabClick("main")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></Link>
+                <Link to="#exams" onClick={() => this.onTabClick("exams")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></Link>
                 <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
                 <Link to="#calendar" onClick={() => this.onTabClick("calendar")} class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></Link>
                 <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
