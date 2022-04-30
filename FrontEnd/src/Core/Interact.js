@@ -14,7 +14,7 @@ export function fetchDynamicItem(type, key) {
     let ret;
     switch(type) {
         case DBType.PROJECT_TITLE: {
-            ret = "OnlineAss";
+            ret = "OnlineAssess";
             break;
         }
         case DBType.USER_USERNAME: {

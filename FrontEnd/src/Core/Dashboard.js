@@ -42,12 +42,9 @@ class Dashboard extends React.Component {
         );
       case "questions":
         return(
-        <div class="question_tab">
-          {this.drawCurrentAnswers()}
-          <br/><br/>
-          <div>
-            <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
-          </div>
+        <div>
+                <Link to="#newquestion" onClick={() => this.onTabClick("newquestion")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
+          text
         </div>
         );
       case "calendar":
@@ -62,6 +59,16 @@ class Dashboard extends React.Component {
 
         </div>
         );
+      case "newquestion":
+        return(
+        <div class="question_tab">
+          {this.drawCurrentAnswers()}
+          <br/><br/>
+          <div>
+            <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
+          </div>
+        </div>
+      );
     }
   }
 
