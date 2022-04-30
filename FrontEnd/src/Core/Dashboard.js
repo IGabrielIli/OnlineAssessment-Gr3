@@ -161,14 +161,23 @@ class Dashboard extends React.Component {
                       <a href="#" class="but">
                         <span class="fa-stack" style={{fontSize:"28px"}}>
                           <i class="fa fa-circle fa-stack-2x" style={{color:"#2a9d8f"}}></i>
-                          <i class="fa fa-envelope fa-stack-1x" style={{color: "#2a9d8f"}}></i>
+                          <i class="fa fa-envelope fa-stack-1x" style={{color: "white"}}></i>
                         </span>
                       </a>
                       <a href="#" class="but">
                         <span class="fa-stack" style={{fontSize:"28px"}}>
-                          <i class="fa fa-circle fa-stack-2x" style={{color:"black"}}></i>
+                          <i class="fa fa-circle fa-stack-2x" style={{color:"#2a9d8f"}}></i>
                           <i class="fa fa-user fa-stack-1x" style={{color: "white"}}></i>
                         </span>
+                      </a>
+                      <a href='#' class="menu">
+                        <div class="kebab-menu">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+
+                        </div>
                       </a>
                   </div>
               </div>

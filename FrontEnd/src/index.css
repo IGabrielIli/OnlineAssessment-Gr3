@@ -143,18 +143,19 @@ hr{
 }
 
 .kebab-menu{
+    background-color: #2a9d8f;
     width: 10px;
     height: 10px;
     position: relative;
     top: 35%;
-    left: 40%;
+    left: 35%;
     transform: translateY(-50%);
 }
 .kebab-menu span{
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #fff;
+    background:#2a9d8f;;
     position: absolute;
 }
 .kebab-menu span:nth-child(1){
@@ -164,7 +165,7 @@ hr{
 }
 .kebab-menu span:nth-child(2){
     top: 0px;
-    left: 30%;
+    left: 35%;
     transition: .6s;
 }
 .kebab-menu span:nth-child(3){
