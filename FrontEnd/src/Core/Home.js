@@ -12,7 +12,7 @@ class Home extends React.Component {
     }
     onLoginClick(e) {
         this.setState({
-            loginErrorText: "Invalid username or password"
+            loginErrorText: "Invalid username/password combination"
         })
     }
     render() {
