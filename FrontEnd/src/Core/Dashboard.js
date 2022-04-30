@@ -176,7 +176,6 @@ class Dashboard extends React.Component {
                           <span></span>
                           <span></span>
                           <span></span>
-
                         </div>
                       </a>
                   </div>
