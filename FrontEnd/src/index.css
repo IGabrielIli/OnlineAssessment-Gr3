@@ -100,6 +100,7 @@ hr.solid {
 
 hr{
   background-color: #2a9d8f;
+  
 }
 
 .header input {
@@ -133,7 +134,7 @@ hr{
   color: #2a9d8f;
   padding-left: 70px;
   padding-top: 20px;
-  font-size: 44px;
+  font-size: 60px;
   font-weight: bold;
 }
 
