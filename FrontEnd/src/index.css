@@ -29,8 +29,8 @@ hr.solid {
   overflow: scroll;
   overflow-x: auto;
   overflow-y: auto;
-  border:black;
-  border-top: black;
+  border:#2a9d8f;
+  border-top: #2a9d8f;
   border-style: solid;
   border-width: 1px;
   border-radius: 5px;
@@ -62,7 +62,7 @@ hr.solid {
 
 .sbb {
   float: left;
-  color: black;
+  color: #2a9d8f;
   text-align: center;
   text-decoration: none;
   font-size: 48px;
@@ -87,14 +87,18 @@ hr.solid {
 
 .header {
   overflow: hidden;
-  background-color: #5EA3A3;
+  background-color: white;
 
   padding: 20px 10px;
-  border-color: black;
+  border-color: #2a9d8f;
   border-width: 3px;
   border-bottom-style: solid;
   position: sticky;
   top: 0;
+}
+
+hr{
+  background-color: #2a9d8f;
 }
 
 .header input {
@@ -125,7 +129,8 @@ input[type=text] {
 }
 
 .header a.logo {
-  color: #FAF9F9;
+  font-family: 'Lobster Two', cursive;
+  color: #2a9d8f;
   padding-left: 70px;
   padding-top: 20px;
   font-size: 44px;

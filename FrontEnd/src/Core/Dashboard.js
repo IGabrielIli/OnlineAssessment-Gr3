@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
             <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
             <span style={{marginLeft:"45px"}}>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own assessments</Link> or <Link to="#create">create one now</Link></span><br/><br/>
             <hr class="solid"/>
-            <h2 style={{marginLeft: "25px"}}>Recent assessments</h2>
+            <h2 style={{marginLeft: "25px"}}>Recent Assessmets</h2>
             <div class="assess">
               {this.drawAssessments()}
             </div>
@@ -91,8 +91,8 @@ class Dashboard extends React.Component {
                       <input class="text" type="text" placeholder="Search..." />
                       <a href="#" class="but">
                         <span class="fa-stack" style={{fontSize:"28px"}}>
-                          <i class="fa fa-circle fa-stack-2x" style={{color:"black"}}></i>
-                          <i class="fa fa-envelope fa-stack-1x" style={{color: "white"}}></i>
+                          <i class="fa fa-circle fa-stack-2x" style={{color:"#2a9d8f"}}></i>
+                          <i class="fa fa-envelope fa-stack-1x" style={{color: "#2a9d8f"}}></i>
                         </span>
                       </a>
                       <a href="#" class="but">
@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
                       </a>
                 </div>
               </div>
-              <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "black", overflowY: "hidden", overflowX:"hidden"}}>
+              <div class="w3-sidebar w3-light-grey w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "#2a9d8f", overflowY: "hidden", overflowX:"hidden"}}>
                 <Link to="#exams" onClick={() => this.onTabClick("main")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exams</label></Link>
                 <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
                 <Link to="#calendar" onClick={() => this.onTabClick("calendar")} class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></Link>
