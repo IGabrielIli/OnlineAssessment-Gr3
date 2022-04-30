@@ -2,6 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count : 1,
+            loginErrorText: ""
+        };
+        this.onLoginClick = this.onLoginClick.bind(this);
+    }
+    onLoginClick(e) {
+        this.setState({
+            loginErrorText: "Invalid username/password combination"
+        })
+    }
     render() {
         return (
         <div>
@@ -10,7 +23,7 @@ class Home extends React.Component {
                 <form class="form" id="login">
                     <h1 class="form__title">OnlineAss</h1>
                     <h3 class="login__text">Log In</h3>
-                    <div class="form__message form__message--error"></div>
+                    <div class="form__message form__message--error">{this.state.loginErrorText}</div>
                     <div class="form__input-group">
                         <input type="text" class="form__input" autofocus placeholder="Username or email"/>
                         <div class="form__input-error-message"></div>
@@ -19,7 +32,7 @@ class Home extends React.Component {
                         <input type="password" class="form__input" autofocus placeholder="Password"/>
                         <div class="form__input-error-message"></div>
                     </div>
-                    <button class="form__button" type="submit">Log In</button>
+                    <button class="form__button" onClick={this.onLoginClick}>Log In</button>
                     <p class="form__text">
                         <a href="#" class="form__link">Forgot your password?</a>
                     </p>
