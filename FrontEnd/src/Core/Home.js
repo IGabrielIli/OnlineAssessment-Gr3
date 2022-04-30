@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { DBType, fetchDynamicItem } from './Interact';
 
 class Home extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class Home extends React.Component {
             <div class="login__background" />
             <div class="login__container">
                 <form class="form" id="login">
-                    <h1 class="form__title">OnlineAss</h1>
+                    <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
                     <h3 class="login__text">Log In</h3>
                     <div class="form__message form__message--error">{this.state.loginErrorText}</div>
                     <div class="form__input-group">
@@ -41,7 +42,7 @@ class Home extends React.Component {
                     </p>
                 </form>
                 <form class="form form--hidden" id="createAccount">
-                    <h1 class="form__title">OnlineAss</h1>
+                    <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
                     <h3 class="login__text">Create Account</h3>
                     <div class="form__message form__message--error"></div>
                     <div class="form__input-group">
