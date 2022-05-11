@@ -9,7 +9,7 @@ let answersSize = 1;
 let answersArray = [''];
 let selectedArray = [0];
 
-class Dashboard extends React.Component extends App {
+class Dashboard extends App {
   constructor(props) {
     super(props);
     this.state = {

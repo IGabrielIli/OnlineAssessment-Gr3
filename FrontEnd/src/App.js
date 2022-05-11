@@ -9,7 +9,7 @@ import { NewEventModal } from '../NewEventModal';
 import { DeleteEventModal } from '../DeleteEventModal';
 import { useDate } from '../hooks/useDate';
 
-class App extends React.Component {
+export const App = () =>   {
 
   const [nav, setNav] = useState();
   const [clicked, setClicked] = useState();
@@ -27,7 +27,7 @@ class App extends React.Component {
 
   const { days, dateDisplay } = useDate(events, nav);
 
-  render() {
+  
     return (
       <BrowserRouter>
         <Routes>
@@ -38,6 +38,7 @@ class App extends React.Component {
       </BrowserRouter>
     );
   }
-}
+
 
 export default App;
+
