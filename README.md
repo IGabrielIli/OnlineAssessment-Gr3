@@ -3,8 +3,9 @@ Online Assessment Project - Development of Large Software Systems (ADOPSE)
 ### Description
 TBD
 
-### UX/UI Design
-[Online Assess.pdf](https://github.com/IGabrielIli/OnlineAssessment-Gr3/files/8681018/Online.Assess.pdf)
+### UI Design
+[OnlineAssessUI Design.pdf](https://github.com/IGabrielIli/OnlineAssessment-Gr3/files/8681032/OnlineAssessUI.Design.pdf)
+
 
 
 ![UML](./current_uml2.png?t=1)
