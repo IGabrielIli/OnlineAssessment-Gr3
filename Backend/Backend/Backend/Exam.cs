@@ -2,7 +2,7 @@
 {
     public class Exam
     {
-        public int ExamId { get; set; }
+        public string? ExamId { get; set; }
         public string? UserId { get; set; }
         public string? ExamAvgDifficulty { get; set; }
         public string? ExamDate { get; set; }
