@@ -1,21 +1,6 @@
-if (!System.IO.File.Exists("userdata"))
-{
-    Environment.Exit(1);
-}
+using Backend;
 
-var lines = System.IO.File.ReadAllLines("userdata");
-
-string user = lines[0];
-string pass = lines[1];
-
-string TNS = "Data Source=(DESCRIPTION =" +
-        "(ADDRESS = (PROTOCOL = TCP)(HOST = dblabs)(PORT = 1521))" +
-        "(CONNECT_DATA =" +
-        "(SERVER = DEDICATED)" +
-        "(SERVICE_NAME = ORCL)));" +
-        "User Id=" + user + ";Password=" + pass + ";";
-
-System.Diagnostics.Debug.WriteLine(TNS);
+OracleConnect.Connect();
 
 var builder = WebApplication.CreateBuilder(args);
 
