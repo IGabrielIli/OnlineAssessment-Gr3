@@ -4,25 +4,8 @@ import Home from './Core/Home';
 import Dashboard from './Core/Dashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-export const App = () =>   {
-
-  const [nav, setNav] = useState();
-  const [clicked, setClicked] = useState();
-  const [events, setEvents] = useState(
-    localStorage.getItem('events') ? 
-      JSON.parse(localStorage.getItem('events')) : 
-      []
-  );
-
-  const eventForDate = date => events.find(e => e.date === date);
-  
-  useEffect(() => {
-    localStorage.setItem('events', JSON.stringify(events));
-  }, [events]);
-
-  const { days, dateDisplay } = useDate(events, nav);
-
-  
+class App extends React.Component {
+  render() {
     return (
       <BrowserRouter>
         <Routes>
@@ -33,7 +16,6 @@ export const App = () =>   {
       </BrowserRouter>
     );
   }
-
-
+}
 export default App;
 
