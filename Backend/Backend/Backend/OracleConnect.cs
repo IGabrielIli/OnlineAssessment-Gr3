@@ -6,7 +6,6 @@ namespace Backend
 {
     public static class OracleConnect
     {
-
         public static void Connect()
         {
             if (conn == null)
