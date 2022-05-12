@@ -18,7 +18,7 @@ namespace Backend.Controllers
         public Exam Get(int id)
         {
             Exam exam = new Exam();
-            var rq = OracleConnect.ReaderQuery("Select * from Exam where EXAMID=" + id.ToString());
+            var rq = OracleConnect.ReaderQuery("Select * from Exam where ExamId=" + id.ToString());
             if (rq != null)
             {
                 rq.Read();
