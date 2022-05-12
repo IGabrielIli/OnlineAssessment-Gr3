@@ -16,7 +16,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("QuestionId={id:int}")]
+        [HttpGet("QuestionId/{id:int}")]
         public Question Get(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from Question where QuestionId=" + id.ToString());

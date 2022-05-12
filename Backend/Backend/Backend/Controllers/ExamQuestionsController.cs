@@ -14,7 +14,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("ExamId={id:int}")]
+        [HttpGet("ExamId/{id:int}")]
         public IEnumerable<ExamQuestions> GetAll(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from ExamQuestions where ExamId=" + id.ToString());
