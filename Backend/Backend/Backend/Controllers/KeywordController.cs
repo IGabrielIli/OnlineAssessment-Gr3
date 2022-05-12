@@ -22,6 +22,7 @@ namespace Backend.Controllers
             Keyword keyword = new Keyword();
             if (rq != null)
             {
+                rq.Read();
                 keyword.KeywordText = rq["KeywordText"].ToString();
                 keyword.KeywordId = rq["KeywordId"].ToString();
                 rq.Dispose();
