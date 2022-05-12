@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
 {
@@ -11,6 +12,27 @@ namespace Backend.Controllers
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpPost]
+        public static void Post(User user)
+        {
+            if (OracleConnect.conn != null)
+            {
+                using OracleCommand command = OracleConnect.conn.CreateCommand();
+                command.CommandText =
+                    "Insert into Users " +
+                    "(UserId, UserName, UserRealName, UserEmail, UserPassword, UserProfilePicURL, UserJobTitle) " +
+                    "values(:UserId, :UserName, :UserRealName, :UserEmail, :UserPassword, :UserProfilePicURL, :UserJobTitle) ";
+                command.Parameters.Add(new OracleParameter("UserId", user.UserId));
+                command.Parameters.Add(new OracleParameter("UserName", user.UserName));
+                command.Parameters.Add(new OracleParameter("UserRealName", user.UserRealName));
+                command.Parameters.Add(new OracleParameter("UserEmail", user.UserEmail));
+                command.Parameters.Add(new OracleParameter("UserPassword", user.UserPasswordMD5));
+                command.Parameters.Add(new OracleParameter("UserProfilePicURL", user.UserProfilePicURL));
+                command.Parameters.Add(new OracleParameter("UserJobTitle", user.UserJobTitle));
+                command.ExecuteNonQuery();
+            }
         }
 
         [HttpGet("UserId/{id:int}")]

@@ -14,6 +14,12 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
+        public void Post(Answer answer)
+        {
+
+        }
+
         [HttpGet("AnswerId/{id:int}")]
         public Answer Get(int id)
         {

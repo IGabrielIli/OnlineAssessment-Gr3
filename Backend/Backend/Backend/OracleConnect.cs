@@ -34,9 +34,9 @@ namespace Backend
         {
             if (conn != null)
             {
-                OracleCommand command = conn.CreateCommand();
+                using OracleCommand command = conn.CreateCommand();
                 command.CommandText = query;
-                OracleDataReader dr = command.ExecuteReader();
+                using OracleDataReader dr = command.ExecuteReader();
                 if (dr.HasRows)
                 {
                     return dr;
@@ -44,7 +44,6 @@ namespace Backend
             }
             return null;
         }
-        private static OracleConnection? conn;
-
+        public static OracleConnection? conn;
     }
 }
