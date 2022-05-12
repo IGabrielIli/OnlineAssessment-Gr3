@@ -3,11 +3,6 @@ import Test from './Core/Test';
 import Home from './Core/Home';
 import Dashboard from './Core/Dashboard';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CalendarHeader } from '../CalendarHeader';
-import { Day } from '../Day';
-import { NewEventModal } from '../NewEventModal';
-import { DeleteEventModal } from '../DeleteEventModal';
-import { useDate } from '../hooks/useDate';
 
 export const App = () =>   {
 
