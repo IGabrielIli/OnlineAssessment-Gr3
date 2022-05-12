@@ -11,12 +11,12 @@ namespace Backend
         {
             if (conn == null)
             {
-                if (!System.IO.File.Exists("userdata"))
+                if (!System.IO.File.Exists("userdata.txt"))
                 {
                     Environment.Exit(1);
                 }
 
-                var lines = System.IO.File.ReadAllLines("userdata");
+                var lines = System.IO.File.ReadAllLines("userdata.txt");
 
                 string user = lines[0];
                 string pass = lines[1];
