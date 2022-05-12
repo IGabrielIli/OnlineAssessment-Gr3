@@ -13,7 +13,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("UserId={id:int}")]
         public User Get(int id)
         {
             User user = new User();

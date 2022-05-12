@@ -14,20 +14,20 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("AnswerId=")]
-        public Answer Get(int id)
-        {
-            Answer answer = new Answer();
-            var rq = OracleConnect.ReaderQuery("Select * from Answer where AnswerId=" + id.ToString());
-            if (rq != null)
-            {
-                rq.Read();
-                answer.AnswerId = id.ToString();
-                // do work
-                rq.Dispose();
-            }
-            return answer;
-        }
+        //[HttpGet("AnswerId=")]
+        //public Answer Get(int id)
+        //{
+        //    Answer answer = new Answer();
+        //    //var rq = OracleConnect.ReaderQuery("Select * from Answer where AnswerId=" + id.ToString());
+        //    //if (rq != null)
+        //    //{
+        //    //    rq.Read();
+        //    //    answer.AnswerId = id.ToString();
+        //    //    // do work
+        //    //    rq.Dispose();
+        //    //}
+        //    return answer;
+        //}
 
         [HttpGet("QuestionId={id:int}")]
         public IEnumerable<Answer> GetAll(int id)
