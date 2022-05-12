@@ -13,7 +13,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("AttemptId/{id:int}")]
+        [HttpGet("byId")]
         public UserAttempt Get(int id)
         {
             UserAttempt userAttempt = new UserAttempt();

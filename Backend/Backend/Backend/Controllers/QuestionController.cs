@@ -16,19 +16,19 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("QuestionId/{id:int}")]
+        [HttpGet("byId")]
         public Question Get(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from Question where QuestionId=" + id.ToString());
             Question question = new Question();
             if (rq != null)
             {
+                rq.Read();
                 question.QuestionId = rq["QuestionId"].ToString();
                 question.QuestionImageUrl = rq["QuestionImageURL"].ToString();
                 question.QuestionText = rq["QuestionText"].ToString();
                 question.QuestionType = rq["QuestionType"].ToString();
                 question.QuestionDifficulty = rq["QuestionDifficulty"].ToString();
-
                 rq.Dispose();
             }
             return question;

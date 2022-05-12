@@ -35,7 +35,7 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpGet("UserId/{id:int}")]
+        [HttpGet("byId")]
         public User Get(int id)
         {
             User user = new User();
@@ -54,5 +54,24 @@ namespace Backend.Controllers
             }
             return user;
         }
+
+        // Returns userId if logged in, -1 if not
+        [HttpGet("login")]
+        public string Get(string userName, string userPassword)
+        {
+            var rq = OracleConnect.ReaderQuery("Select * from Users where UserName=" + userName + " and UserPassword=" + userPassword);
+            if (rq != null)
+            {
+                rq.Read();
+                string? ret = rq["UserId"].ToString();
+                if (ret == null)
+                {
+                    return "-1";
+                }
+                return ret;
+            }
+            return "-1";
+        }
+
     }
 }

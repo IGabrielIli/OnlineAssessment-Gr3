@@ -36,7 +36,7 @@ namespace Backend
             {
                 using OracleCommand command = conn.CreateCommand();
                 command.CommandText = query;
-                using OracleDataReader dr = command.ExecuteReader();
+                OracleDataReader dr = command.ExecuteReader();
                 if (dr.HasRows)
                 {
                     return dr;

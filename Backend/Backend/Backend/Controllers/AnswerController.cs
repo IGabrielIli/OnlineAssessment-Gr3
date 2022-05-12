@@ -20,7 +20,7 @@ namespace Backend.Controllers
 
         }
 
-        [HttpGet("AnswerId/{id:int}")]
+        [HttpGet("byId")]
         public Answer Get(int id)
         {
             Answer answer = new Answer();
@@ -37,7 +37,7 @@ namespace Backend.Controllers
             return answer;
         }
 
-        [HttpGet("QuestionId/{id:int}")]
+        [HttpGet("byQuestionId")]
         public IEnumerable<Answer> GetAll(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from Answer where QuestionId=" + id.ToString());
