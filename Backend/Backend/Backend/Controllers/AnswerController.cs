@@ -18,15 +18,15 @@ namespace Backend.Controllers
         public Answer Get(int id)
         {
             Answer answer = new Answer();
-            var rq = OracleConnect.ReaderQuery("Select * from Answers where UserId=" + id.ToString());
+            var rq = OracleConnect.ReaderQuery("Select * from Answer where AnswerId=" + id.ToString());
             if (rq != null)
             {
                 rq.Read();
-                answer.UserId = id.ToString();
+                answer.AnswerId = id.ToString();
                 // do work
                 rq.Dispose();
             }
-            return user;
+            return answer;
         }
 
         [HttpGet("QuestionId={id:int}")]
@@ -39,7 +39,8 @@ namespace Backend.Controllers
                 while (rq.Read())
                 {
                     Answer answer = new Answer();
-
+                    answer.QuestionId = id.ToString();
+                    // do work
                     answers = answers.Append(answer);
                 }
                 rq.Dispose();
