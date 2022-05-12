@@ -3,7 +3,7 @@
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -21,7 +21,7 @@ namespace Backend.Controllers
             if (rq != null)
             {
                 rq.Read();
-                user.UserId = id;
+                user.UserId = id.ToString();
                 // do work
                 rq.Dispose();
             }

@@ -4,7 +4,7 @@ using Backend;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ExamController : ControllerBase
     {
         private readonly ILogger<ExamController> _logger;
@@ -14,8 +14,8 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{id:int}")]
-        public IEnumerable<Exam> Get(int id)
+        [HttpGet("UserId={id:int}")]
+        public IEnumerable<Exam> GetAll(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from Exam where UserId=" + id.ToString());
             IEnumerable<Exam> exams = new List<Exam>();
