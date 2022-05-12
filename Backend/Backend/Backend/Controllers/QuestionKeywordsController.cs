@@ -19,19 +19,19 @@ namespace Backend.Controllers
         public IEnumerable<QuestionKeywords> GetAll(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from QuestionKeywords where QuestionId=" + id.ToString());
-            IEnumerable<QuestionKeywords> QuestionKeywords = new List<QuestionKeywords>();
+            IEnumerable<QuestionKeywords> questionKeywords = new List<QuestionKeywords>();
             if (rq != null)
             {
                 while (rq.Read())
                 {
-                    QuestionKeywords QuestionKeywords = new QuestionKeywords();
-                    QuestionKeywords.QuestionId = rq["QuestionId"].ToString();
-                    QuestionKeywords.KeywordId = rq["KeywordId"].ToString();
-                    QuestionKeywords = QuestionKeywords.Append(QuestionKeywords);
+                    QuestionKeywords questionKeyword = new QuestionKeywords();
+                    questionKeyword.QuestionId = rq["QuestionId"].ToString();
+                    questionKeyword.KeywordId = rq["KeywordId"].ToString();
+                    questionKeywords = questionKeywords.Append(questionKeyword);
                 }
                 rq.Dispose();
             }
-            return QuestionKeywords.ToArray();
+            return questionKeywords.ToArray();
         }
     }
 }

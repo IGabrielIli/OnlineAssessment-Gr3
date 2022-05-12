@@ -20,12 +20,10 @@ namespace Backend.Controllers
         {
             var rq = OracleConnect.ReaderQuery("Select * from Keyword where KeywordId=" + id.ToString());
             Keyword keyword = new Keyword();
-
             if (rq != null)
             {
                 keyword.KeywordText = rq["KeywordText"].ToString();
                 keyword.KeywordId = rq["KeywordId"].ToString();
-                Keyword = Keyword.Append(keyword);
                 rq.Dispose();
             }
             return keyword;
