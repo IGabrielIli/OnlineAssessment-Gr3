@@ -20,9 +20,19 @@ namespace Backend.Controllers
             var rq = OracleConnect.ReaderQuery("Select * from Users where UserId=" + id.ToString());
             if (rq != null)
             {
-                rq.Read();
-                user.UserId = id.ToString();
-                // do work
+                while (rq.Read())
+                {
+                    
+                    user.UserId = rq["UserId"].ToString();
+                    user.UserName = rq["UserName"].ToString();
+                    user.UserRealName = rq["UserRealName"].ToString();
+                    user.UserEmail = rq["UserEmail"].ToString();
+                    user.UserPasswordMD5 = rq["UserPassword"].ToString();
+                    user.UserProfilePicURL = rq["UserProfilePicURL"].ToString();
+                    user.UserJobTitle = rq["UserJobTitle"].ToString();
+                    
+
+                }
                 rq.Dispose();
             }
             return user;
