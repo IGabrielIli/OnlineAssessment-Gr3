@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import { DBType, fetchDynamicItem } from './Interact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg-icons'
-import App from '../App';
+
+
 
 let answersSize = 1;
 let answersArray = [''];
 let selectedArray = [0];
 
-class Dashboard extends App {
+class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,62 +52,7 @@ class Dashboard extends App {
       case "calendar":
         return (
         <div>
-          <>
-      <div id="container">
-        <CalendarHeader 
-          dateDisplay={dateDisplay}
-          onNext={() => setNav(nav + 1)}
-          onBack={() => setNav(nav - 1)}
-        />
-
-        <div id="weekdays">
-          <div>Sunday</div>
-          <div>Monday</div>
-          <div>Tuesday</div>
-          <div>Wednesday</div>
-          <div>Thursday</div>
-          <div>Friday</div>
-          <div>Saturday</div>
-        </div>
-
-        <div id="calendar">
-          {days.map((d, index) => (
-            <Day
-              key={index}
-              day={d}
-              onClick={() => {
-                if (d.value !== 'padding') {
-                  setClicked(d.date);
-                }
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {
-        clicked && !eventForDate(clicked) &&
-        <NewEventModal
-          onClose={() => setClicked(null)}
-          onSave={title => {
-            setEvents([ ...events, { title, date: clicked }]);
-            setClicked(null);
-          }}
-        />
-      }
-
-      {
-        clicked && eventForDate(clicked) &&
-        <DeleteEventModal 
-          eventText={eventForDate(clicked).title}
-          onClose={() => setClicked(null)}
-          onDelete={() => {
-            setEvents(events.filter(e => e.date !== clicked));
-            setClicked(null);
-          }}
-        />
-      }
-    </>
+         
         </div>
         );
       case "help":
