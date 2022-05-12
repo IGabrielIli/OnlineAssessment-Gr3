@@ -40,7 +40,10 @@ namespace Backend.Controllers
                 {
                     Answer answer = new Answer();
                     answer.QuestionId = id.ToString();
-                    // do work
+                    answer.AnswerId = rq["AnswerId"].ToString();
+                    answer.QuestionId = rq["QuestionId"].ToString();
+                    answer.AnswerText = rq["AnswerText"].ToString();
+                    answer.IsCorrect = rq["IsCorrect"].ToString();
                     answers = answers.Append(answer);
                 }
                 rq.Dispose();
