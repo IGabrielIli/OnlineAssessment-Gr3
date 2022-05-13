@@ -33,7 +33,7 @@ class Home extends React.Component {
                         <input type="password" class="form__input" autofocus placeholder="Password"/>
                         <div class="form__input-error-message"></div>
                     </div>
-                    <button class="form__button" onClick={this.onLoginClick}>Log In</button>
+                    <button type="button" class="form__button" onClick={this.onLoginClick}>Log In</button>
                     <p class="form__text">
                         <a href="#" class="form__link">Forgot your password?</a>
                     </p>
