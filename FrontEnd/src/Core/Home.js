@@ -7,21 +7,51 @@ class Home extends React.Component {
         super(props);
         this.state = {
             count : 1,
-            loginErrorText: ""
+            loginErrorText: "",
+            loginHide: false,
+            registerHide: true,
+            forgotHide: true,
         };
         this.onLoginClick = this.onLoginClick.bind(this);
+        this.onSignupClick = this.onSignupClick.bind(this);
+        this.onBackToLoginClick = this.onBackToLoginClick.bind(this);
+        this.onForgotClick = this.onForgotClick.bind(this);
     }
     onLoginClick(e) {
         this.setState({
             loginErrorText: "Invalid username/password combination"
         })
     }
+    onSignupClick(e) {
+        this.setState({
+            loginHide: true,
+            registerHide: false,
+            forgotHide: true,
+        })
+    }
+    onBackToLoginClick(e) {
+        this.setState({
+            loginHide: false,
+            registerHide: true,
+            forgotHide: true,
+        })
+    }
+    onForgotClick(e) {
+        this.setState({
+            loginHide: true,
+            registerHide: true,
+            forgotHide: false,
+        })
+    }
     render() {
+        var loginShown = this.state.loginHide ? "form form--hidden" : "form";
+        var registerShown = this.state.registerHide ? "form form--hidden" : "form";
+        var forgotShown = this.state.forgotHide ? "form form--hidden" : "form";
         return (
         <div>
             <div class="login__background" />
             <div class="login__container">
-                <form class="form" id="login">
+                <form class={loginShown} id="login">
                     <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
                     <h3 class="login__text">Log In</h3>
                     <div class="form__message form__message--error">{this.state.loginErrorText}</div>
@@ -35,13 +65,13 @@ class Home extends React.Component {
                     </div>
                     <button type="button" class="form__button" onClick={this.onLoginClick}>Log In</button>
                     <p class="form__text">
-                        <a href="#" class="form__link">Forgot your password?</a>
+                        <a class="form__link" onClick={this.onForgotClick}>Forgot your password?</a>
                     </p>
                     <p class="form__text">
-                        <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Sign up here</a>
+                        <a class="form__link" onClick={this.onSignupClick}>Don't have an account? Sign up here</a>
                     </p>
                 </form>
-                <form class="form form--hidden" id="createAccount">
+                <form class={registerShown} id="createAccount">
                     <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
                     <h3 class="login__text">Create Account</h3>
                     <div class="form__message form__message--error"></div>
@@ -61,10 +91,13 @@ class Home extends React.Component {
                         <input type="password" class="form__input" autofocus placeholder="Confirm password"/>
                         <div class="form__input-error-message"></div>
                     </div>
-                    <button class="form__button" type="submit">Sign Up</button>
+                    <button class="form__button" type="button">Sign Up</button>
                     <p class="form__text">
-                        <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
+                        <a class="form__link" onClick={this.onBackToLoginClick}>Already have an account? Sign in</a>
                     </p>
+                </form>
+                <form class={forgotShown} id="forgotPassword">
+                    
                 </form>
             </div>
         </div>
