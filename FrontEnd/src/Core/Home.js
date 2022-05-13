@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { DBType, fetchDynamicItem } from './Interact';
 
 let signupDetails = ['', '', '', '', '', '']
-
+let loginDetails = ['', '']
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -22,16 +22,29 @@ class Home extends React.Component {
         this.onBackToLoginClick = this.onBackToLoginClick.bind(this);
         this.onForgotClick = this.onForgotClick.bind(this);
         this.onSignupInputChange = this.onSignupInputChange.bind(this);
+        this.onLoginInputChange = this.onLoginInputChange.bind(this);
+    }
+    onLoginInputChange(e, id) {
+        loginDetails[id] = e.target.value
     }
     onSignupInputChange(e, id) {
         signupDetails[id] = e.target.value
     }
     onLoginClick(e) {
-        this.setState({
-            signupErrorText: "",
-            signupSuccessText: "",
-            loginErrorText: "Invalid username/password combination"
-        })
+        var url = "https://localhost:7299/api/User/login?userName=" + loginDetails[0] + "&userPassword=" + loginDetails[1]
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                if (data == "-1") {
+                    this.setState({
+                        signupErrorText: "",
+                        signupSuccessText: "",
+                        loginErrorText: "Invalid username/password combination"})
+                } else {
+                    document.cookie = data;
+                    window.location.href = 'Dashboard';
+                }
+            });
     }
     onSignupClick(e) {
         this.setState({
@@ -141,11 +154,11 @@ class Home extends React.Component {
                     <div class="form__message form__message--error">{this.state.loginErrorText}</div>
                     <div class="form__message form__message--success">{this.state.signupSuccessText}</div>
                     <div class="form__input-group">
-                        <input type="text" class="form__input" autofocus placeholder="Username or email"/>
+                        <input type="text" class="form__input" onChange={ (e) => this.onLoginInputChange(e, 0) } autofocus placeholder="Username or email"/>
                         <div class="form__input-error-message"></div>
                     </div>
                     <div class="form__input-group">
-                        <input type="password" class="form__input" autofocus placeholder="Password"/>
+                        <input type="password" class="form__input" onChange={ (e) => this.onLoginInputChange(e, 1) } autofocus placeholder="Password"/>
                         <div class="form__input-error-message"></div>
                     </div>
                     <button type="button" class="form__button" onClick={this.onLoginClick}>Login</button>

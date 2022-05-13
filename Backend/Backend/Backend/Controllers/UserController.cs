@@ -6,6 +6,7 @@ namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -62,9 +63,11 @@ namespace Backend.Controllers
 
         // Returns userId if logged in, -1 if not
         [HttpGet("login")]
+        [EnableCors]
         public string Get(string userName, string userPassword)
         {
-            var rq = OracleConnect.ReaderQuery("Select * from Users where UserName=" + userName + " and UserPassword=" + userPassword);
+            
+            var rq = OracleConnect.ReaderQuery("Select * from Users where UserName=\'" + userName + "\' and UserPassword=\'" + userPassword + "\'");
             if (rq != null)
             {
                 rq.Read();
