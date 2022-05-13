@@ -6,6 +6,7 @@ import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg
 
 
 
+
 let answersSize = 1;
 let answersArray = [''];
 let selectedArray = [0];
@@ -54,10 +55,9 @@ class Dashboard extends React.Component {
         );
       case "questions":
         return(
-        <div>
+          <div>
                 <Link to="#newquestion" onClick={() => this.onTabClick("newquestion")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-          text
-        </div>
+          </div>
         );
       case "calendar":
 
@@ -86,13 +86,86 @@ class Dashboard extends React.Component {
       case "notifications" :
       return(
         <div>
-
+            <div class="hello">
+            <h1 style={{marginLeft: "60px"}}>Notifications </h1>
+            </div>
+            <hr class="solid"/>
+            <div class="assessNotifications">
+              
+            </div>
         </div>
       );
-      case "Profil" :
+      case "profil" :
       return(
         <div>
-          
+            <div class="hello">
+              <h1 style={{marginLeft: "60px"}}>Your Profile </h1>
+            </div>
+            <hr class="solid"/>
+            <div class="container">
+        <div class="row">
+            <div class="col-12">
+              
+              
+              <form class="file-upload">
+                <div class="row mb-5 gx-5">
+                  <div class="col-xxl-8 mb-5 mb-xxl-0">
+                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                      <div class="row g-3">
+                        <h4 class="mb-4 mt-0">Contact detail</h4>
+                        
+                        <div class="col">
+                          <label class="form-label">First Name *   </label>
+                          <input type="text" class="form-control" placeholder="" aria-label="First name" value="Scaralet"/>
+                        </div>
+                        <div class="col">
+                          <label class="form-label">Last Name *   </label>
+                          <input type="text" class="form-control" placeholder="" aria-label="Last name" value="Doe"/>
+                        </div>
+                        <div class="col">
+                          <label class="form-label">Mobile number *   </label>
+                          <input type="text" class="form-control" placeholder="" aria-label="Phone number" value="+91 9852 8855 252"/>
+                        </div>
+                        <div class="col">
+                          <label for="inputEmail4" class="form-label">Email *   </label>
+                          <input type="email" class="form-control" id="inputEmail4" value="example@homerealty.com"/>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>
+                </div> 
+                  <div class="row mb-5 gx-5">
+                   <div class="col-xxl-6">
+                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                      <div class="row g-3">
+                        <h4 class="my-4">Change Password</h4>
+                        
+                        <div class="col">
+                          <label for="exampleInputPassword1" class="form-label">Old password *   </label>
+                          <input type="password" class="form-control" id="exampleInputPassword1"/>
+                        </div>
+                        
+                        <div class="col">
+                          <label for="exampleInputPassword2" class="form-label">New password *   </label>
+                          <input type="password" class="form-control" id="exampleInputPassword2"/>
+                        </div>
+                        
+                        <div class="col">
+                          <label for="exampleInputPassword3" class="form-label">Confirm Password *   </label>
+                          <input type="password" class="form-control" id="exampleInputPassword3"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                
+                <div class="gap-3 d-md-flex justify-content-md-end text-center">
+                   <button type="button" class="btn btn-primary btn-lg">Update profile</button>
+                </div>
+              </form> 
+            </div>
+          </div>
+          </div>
         </div>
       );
 
@@ -187,16 +260,20 @@ class Dashboard extends React.Component {
                   <div class="header-right" style={{marginRight: "2%"}}>
                       <div class="search"><input type="text" placeholder="Search..." /></div>
                       <a href="#" class="but">
+                      <Link to="#notifications" onClick={() => this.onTabClick("notifications")}>
                         <span class="fa-stack" style={{fontSize:"28px"}}>
-                          <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}></i>
-                          <i class="fa fa-envelope fa-stack-1x" style={{color: "#04293A"}}></i>
+                            <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}></i>
+                            <i class="fa fa-envelope fa-stack-1x" style={{color: "#04293A"}}></i>
                         </span>
+                        </Link>
                       </a>
                       <a href="#" class="but">
-                        <span class="fa-stack" style={{fontSize:"28px"}}>
-                          <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}></i>
+                      <Link to="#profil" onClick={() => this.onTabClick("profil")}  >
+                        <span class="fa-stack" style={{fontSize:"30px"}}>
+                          <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}> </i>
                           <i class="fa fa-user fa-stack-1x" style={{color: "#04293A"}}></i>
                         </span>
+                      </Link>
                       </a>
                       <a href='#' class="menu">
                         <div class="kebab-menu">
