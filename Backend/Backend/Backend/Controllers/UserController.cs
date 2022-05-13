@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
@@ -15,23 +16,28 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public static void Post(User user)
+        public void Create([FromForm]User user)
         {
-            if (OracleConnect.conn != null)
+            if (OracleConnect.conn != null && user.UserEmail != null)
             {
                 using OracleCommand command = OracleConnect.conn.CreateCommand();
                 command.CommandText =
                     "Insert into Users " +
-                    "(UserId, UserName, UserRealName, UserEmail, UserPassword, UserProfilePicURL, UserJobTitle) " +
-                    "values(:UserId, :UserName, :UserRealName, :UserEmail, :UserPassword, :UserProfilePicURL, :UserJobTitle) ";
-                command.Parameters.Add(new OracleParameter("UserId", user.UserId));
+                    "(UserId, UserName, UserRealName, UserEmail, UserPassword, UserJobTitle) " +
+                    "values(:UserId, :UserName, :UserRealName, :UserEmail, :UserPassword, :UserJobTitle) ";
+                var hash = Hash.SHA1(user.UserEmail);
+                command.Parameters.Add(new OracleParameter("UserId", hash));
                 command.Parameters.Add(new OracleParameter("UserName", user.UserName));
                 command.Parameters.Add(new OracleParameter("UserRealName", user.UserRealName));
                 command.Parameters.Add(new OracleParameter("UserEmail", user.UserEmail));
                 command.Parameters.Add(new OracleParameter("UserPassword", user.UserPasswordMD5));
-                command.Parameters.Add(new OracleParameter("UserProfilePicURL", user.UserProfilePicURL));
                 command.Parameters.Add(new OracleParameter("UserJobTitle", user.UserJobTitle));
-                command.ExecuteNonQuery();
+                try
+                {
+                    command.ExecuteNonQuery();
+                } catch (Exception)
+                {
+                }
             }
         }
 
@@ -48,7 +54,6 @@ namespace Backend.Controllers
                 user.UserRealName = rq["UserRealName"].ToString();
                 user.UserEmail = rq["UserEmail"].ToString();
                 user.UserPasswordMD5 = rq["UserPassword"].ToString();
-                user.UserProfilePicURL = rq["UserProfilePicURL"].ToString();
                 user.UserJobTitle = rq["UserJobTitle"].ToString();
                 rq.Dispose();
             }
@@ -72,6 +77,5 @@ namespace Backend.Controllers
             }
             return "-1";
         }
-
     }
 }
