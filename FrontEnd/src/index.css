@@ -15,7 +15,7 @@ body {
 
 h1{
   color: white;
-  font-weight: bold;
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 
 h2{
@@ -24,6 +24,41 @@ h2{
 
 h3{
   color: white;
+}
+
+.hello{
+  padding-top: 120px;
+}
+
+.createassess{
+  float: inline-end;
+  font-weight: bold;
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: #064663;
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 19px 8px 19px;
+  text-decoration: none;
+  
+}
+
+.createassess:hover {
+  background: #030303;
+  background-image: -webkit-linear-gradient(top, #030303, #000000);
+  background-image: -moz-linear-gradient(top, #030303, #000000);
+  background-image: -ms-linear-gradient(top, #030303, #000000);
+  background-image: -o-linear-gradient(top, #030303, #000000);
+  background-image: linear-gradient(to bottom, #030303, #000000);
+  text-decoration: none;
 }
 
 label {
@@ -49,8 +84,23 @@ hr.solid {
   border-width: 1px;
   border-radius: 5px;
   margin-right: 14px;
-  min-height: 60vh;
-  max-height: 60vh;
+  min-height: 56vh;
+  max-height: 56vh;
+  background-color: ghostwhite;
+}
+
+.assessExam{
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y:auto;
+  border:#04293A;
+  border-top: #04293A;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-right: 14px;
+  min-height: 68vh;
+  max-height: 68vh;
   background-color: ghostwhite;
 }
 
@@ -361,7 +411,7 @@ hr{
 
 .form__title {
     text-align: center;
-    color: #2a9d8f;
+    color: #064663;
     font-size: 63px;
     text-shadow: 1px 1px 1px #264653,
         2px 2px 3px #264653;
@@ -435,7 +485,7 @@ hr{
 }
 
 .form__input:focus {
-    border-color: #287271;
+    border-color: #064663;
     background: #ffffff;
 }
 
@@ -452,7 +502,7 @@ hr{
 
 .form__button {
     height: 46px;
-    background-color: #2a9d8f;
+    background-color: #064663;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -463,7 +513,7 @@ hr{
 }
 
 .form__button:hover {
-    background-color: #287271;
+    background-color: #064663;
     transition: 0.5s ease;
 }
 

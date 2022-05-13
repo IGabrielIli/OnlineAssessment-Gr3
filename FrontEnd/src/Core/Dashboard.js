@@ -27,8 +27,11 @@ class Dashboard extends React.Component {
       case "main":
         return(
         <div>
-            <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
-            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
+            <div class="hello">
+            <h1 style={{marginLeft: "60px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
+            <h2 style={{marginLeft:"90px"}}>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
+            </div>
+            
             <hr class="solid"/>
             <h3 style={{marginLeft: "25px"}}>Recent Assessmets</h3>
             <div class="assess">
@@ -38,8 +41,15 @@ class Dashboard extends React.Component {
         );
       case "exams":
         return(
-        <div>
-
+          <div>
+            <div class="hello">
+            <h1 style={{marginLeft: "60px"}}>Your Assessments </h1>
+            <button class="createassess"style={{marginLeft:"1500px"}}>Create New</button>
+            </div>
+            <hr class="solid"/>
+            <div class="assessExam">
+              {this.drawAssessments()}
+            </div>
         </div>
         );
       case "questions":
@@ -73,6 +83,19 @@ class Dashboard extends React.Component {
           </div>
         </div>
       );
+      case "notifications" :
+      return(
+        <div>
+
+        </div>
+      );
+      case "Profil" :
+      return(
+        <div>
+          
+        </div>
+      );
+
     }
   }
 
