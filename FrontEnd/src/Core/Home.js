@@ -53,7 +53,7 @@ class Home extends React.Component {
             <div class="login__container">
                 <form class={loginShown} id="login">
                     <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
-                    <h3 class="login__text">Log In</h3>
+                    <h3 class="login__text">Login</h3>
                     <div class="form__message form__message--error">{this.state.loginErrorText}</div>
                     <div class="form__input-group">
                         <input type="text" class="form__input" autofocus placeholder="Username or email"/>
@@ -63,7 +63,7 @@ class Home extends React.Component {
                         <input type="password" class="form__input" autofocus placeholder="Password"/>
                         <div class="form__input-error-message"></div>
                     </div>
-                    <button type="button" class="form__button" onClick={this.onLoginClick}>Log In</button>
+                    <button type="button" class="form__button" onClick={this.onLoginClick}>Login</button>
                     <p class="form__text">
                         <a class="form__link" onClick={this.onForgotClick}>Forgot your password?</a>
                     </p>
@@ -73,7 +73,7 @@ class Home extends React.Component {
                 </form>
                 <form class={registerShown} id="createAccount">
                     <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
-                    <h3 class="login__text">Create Account</h3>
+                    <h3 class="login__text">Create account</h3>
                     <div class="form__message form__message--error"></div>
                     <div class="form__input-group">
                         <input type="text" id="signupUsername" class="form__input" autofocus placeholder="Username"/>
@@ -97,7 +97,9 @@ class Home extends React.Component {
                     </p>
                 </form>
                 <form class={forgotShown} id="forgotPassword">
-                    
+                    <h1 class="form__title">{fetchDynamicItem(DBType.PROJECT_TITLE)}</h1>
+                    <h3 class="login__text">Forgot password</h3>
+                    <a class="form__link" onClick={this.onBackToLoginClick}>Back to login page</a>
                 </form>
             </div>
         </div>

@@ -424,6 +424,9 @@ hr{
     text-align: center;
     margin-top: 5px;
     margin-bottom: 15px;
+    color: #125e82;
+    text-shadow: 1px 1px 1px #264653,
+        1px 1px 1px #264653;
 }
 
 .form {
@@ -506,7 +509,7 @@ hr{
     color: white;
     font-size: 16px;
     cursor: pointer;
-    padding-left: 0;
+    padding-left: 4px;
     border-radius: 6px;
     margin-left: 37%;
     margin-top: 25px;
@@ -514,7 +517,7 @@ hr{
 }
 
 .form__button:hover {
-    background-color: #064663;
+    background-color: #05354b;
     transition: 0.5s ease;
 }
 
