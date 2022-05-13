@@ -36,9 +36,16 @@ class Dashboard extends React.Component {
         );
       case "exams":
         return(
-        <div>
-
-        </div>
+          <div>
+            <div class="hello">
+            <h2 style={{marginLeft: "60px"}}>Your Exams </h2>
+              <button class="createassess"style={{marginLeft:"1500px"}}>Create New</button>
+            </div>
+            <hr class="solid"/>
+            <div class="assessExam">
+              {this.drawAssessments()}
+            </div>
+          </div>
         );
       case "questions":
         return(
@@ -47,34 +54,78 @@ class Dashboard extends React.Component {
           </div>
         );
       case "calendar":
-
-      
         return (
-        <div>
+          <div>
          
-        </div>
-        );
-      case "help":
-        return(
-        <div>
-
-        </div>
+          </div>
         );
       case "newquestion":
         return(
-        <div class="question_tab">
-          {this.drawCurrentAnswers()}
-          <br/><br/>
           <div>
-            <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
+            <div class="hello">
+              <h2 style={{marginLeft: "60px"}}>New Question </h2>
+            </div>
+            <hr class="solid"/>
+            <div>
+              <label style={{color:"white",marginLeft:"20px",fontSize:"20px"}}>Type your Question</label><br></br>
+              <textarea class="questioninput"></textarea><br></br>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px",marginLeft:"20px"}}>
+                      <i class="fa fa-bold" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-underline" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-italic" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-list-ul" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-superscript" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-trash" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+            </div>
+            <div class="question_tab">
+              {this.drawCurrentAnswers()}
+              <br/><br/>
+              <div>
+                <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
+              </div>
+            </div>
           </div>
-        </div>
-      );
+        );
       case "notifications" :
       return(
         <div>
             <div class="hello">
-            <h1 style={{marginLeft: "60px"}}>Notifications </h1>
+            <h2 style={{marginLeft: "60px"}}>Notifications </h2>
             </div>
             <hr class="solid"/>
             <div class="assessNotifications">
@@ -82,13 +133,86 @@ class Dashboard extends React.Component {
             </div>
         </div>
       );
-      case "profile" :
+      case "profile":
+        return(
+          <div>
+              <div class="hello">
+                <h2 style={{marginLeft: "60px"}}>Your Profile </h2>
+              </div>
+              <hr class="solidprofile"/>
+              <div>
+            <label class="profiledetailslabels">Username:</label>
+            <label class="details1">Username</label>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Full Name:</label>
+            <label class="details1">Username:*</label>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Email:</label>
+            <label class="details1">Username:*</label>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Job Title:</label>
+            <label class="details1">Username:*</label>
+          </div>
+          <button class="editprofilebutton"style={{marginLeft:"780px"}} onClick={() => this.onTabClick("editprofile")}>Edit</button>
+          
+          </div>
+        );
+      case "editprofile" :
       return(
         <div>
-          <input type="text" class="answer"></input>
+          <div class="hello">
+            <h2 style={{marginLeft: "60px"}}>Edit Your Profile </h2>
+          </div>
+          <hr class="solid"/>
+          <div>
+            <label class="profiledetailslabels">Username:*</label>
+            <input type="text" class="details"></input>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Full Name:*</label>
+            <input type="text" class="details"></input>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Email:*</label>
+            <input type="text" class="details" ></input>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Job Title:</label>
+            <input type="text" class="details"></input>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div>
+            <label class="profiledetailslabels">Old Password:*</label>
+            <input type="text" class="details"></input>
+          </div>
+          <div>
+            <label class="profiledetailslabels">New Password:*</label>
+            <input type="text" class="details"></input>
+          </div>
+          <div>
+            <label class="profiledetailslabels">Confirm Password:*</label>
+            <input type="text" class="details" ></input>
+          </div>
+          <button class="editprofileconfirmbutton"style={{marginLeft:"800px"}} >Confirm</button>
         </div>
       );
-
+        case "help":
+          return(
+            <div>
+              <div class="hello">
+                <h2 style={{marginLeft: "60px"}}>Help </h2>
+              </div>
+              <hr class="solid"/>
+            </div>
+          );
     }
   }
 
@@ -192,6 +316,13 @@ class Dashboard extends React.Component {
                         <span class="fa-stack" style={{fontSize:"30px"}}>
                           <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}> </i>
                           <i class="fa fa-user fa-stack-1x" style={{color: "#04293A"}}></i>
+                        </span>
+                      </Link>
+                      </a>
+                      <a href="#" class="but">
+                      <Link to="#profile" onClick  >
+                        <span class="fa-stack" style={{fontSize:"30px"}}>
+                          <i class="fa fa-sign-out" style={{fontSize:"48px",color:"white",marginTop:"8px"}}></i>
                         </span>
                       </Link>
                       </a>
