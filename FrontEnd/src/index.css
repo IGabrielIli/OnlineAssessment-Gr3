@@ -508,8 +508,9 @@ hr{
     cursor: pointer;
     padding-left: 0;
     border-radius: 6px;
+    margin-left: 37%;
     margin-top: 25px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 .form__button:hover {
