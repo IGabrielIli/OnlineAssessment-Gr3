@@ -4,9 +4,6 @@ import { DBType, fetchDynamicItem } from './Interact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 
-
-
-
 let answersSize = 1;
 let answersArray = [''];
 let selectedArray = [0];
@@ -28,11 +25,8 @@ class Dashboard extends React.Component {
       case "main":
         return(
         <div>
-            <div class="hello">
-            <h1 style={{marginLeft: "60px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
-            <h2 style={{marginLeft:"90px"}}>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
-            </div>
-            
+            <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
+            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
             <hr class="solid"/>
             <h3 style={{marginLeft: "25px"}}>Recent Assessmets</h3>
             <div class="assess">
@@ -42,15 +36,8 @@ class Dashboard extends React.Component {
         );
       case "exams":
         return(
-          <div>
-            <div class="hello">
-            <h1 style={{marginLeft: "60px"}}>Your Assessments </h1>
-            <button class="createassess"style={{marginLeft:"1500px"}}>Create New</button>
-            </div>
-            <hr class="solid"/>
-            <div class="assessExam">
-              {this.drawAssessments()}
-            </div>
+        <div>
+
         </div>
         );
       case "questions":
@@ -95,11 +82,11 @@ class Dashboard extends React.Component {
             </div>
         </div>
       );
-      case "profil" :
+      case "profile" :
       return(
         <div>
             <div class="hello">
-              <h1 style={{marginLeft: "60px"}}>Your Profile </h1>
+              <h1 style={{marginLeft: "60px"}}>Your profilee </h1>
             </div>
             <hr class="solid"/>
             <div class="container">
@@ -160,7 +147,7 @@ class Dashboard extends React.Component {
                 </div> 
                 
                 <div class="gap-3 d-md-flex justify-content-md-end text-center">
-                   <button type="button" class="btn btn-primary btn-lg">Update profile</button>
+                   <button type="button" class="btn btn-primary btn-lg">Update profilee</button>
                 </div>
               </form> 
             </div>
@@ -268,20 +255,12 @@ class Dashboard extends React.Component {
                         </Link>
                       </a>
                       <a href="#" class="but">
-                      <Link to="#profil" onClick={() => this.onTabClick("profil")}  >
+                      <Link to="#profile" onClick={() => this.onTabClick("profile")}  >
                         <span class="fa-stack" style={{fontSize:"30px"}}>
                           <i class="fa fa-circle fa-stack-2x" style={{color:"white"}}> </i>
                           <i class="fa fa-user fa-stack-1x" style={{color: "#04293A"}}></i>
                         </span>
                       </Link>
-                      </a>
-                      <a href='#' class="menu">
-                        <div class="kebab-menu">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                        </div>
                       </a>
                   </div>
               </div>
