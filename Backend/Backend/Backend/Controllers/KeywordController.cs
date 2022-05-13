@@ -15,7 +15,7 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
-        [HttpGet("KeywordId/{id:int}")]
+        [HttpGet("byId")]
         public Keyword Get(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from Keyword where KeywordId=" + id.ToString());
