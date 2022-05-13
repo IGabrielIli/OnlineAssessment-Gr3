@@ -36,10 +36,10 @@ namespace Backend.Controllers
         }
 
         [HttpGet("byId")]
-        public User Get(int id)
+        public User Get(string id)
         {
             User user = new User();
-            var rq = OracleConnect.ReaderQuery("Select * from Users where UserId=" + id.ToString());
+            var rq = OracleConnect.ReaderQuery("Select * from Users where UserId=\'" + id + "\'");
             if (rq != null)
             {
                 rq.Read();
@@ -48,7 +48,6 @@ namespace Backend.Controllers
                 user.UserRealName = rq["UserRealName"].ToString();
                 user.UserEmail = rq["UserEmail"].ToString();
                 user.UserPasswordMD5 = rq["UserPassword"].ToString();
-                user.UserProfilePicURL = rq["UserProfilePicURL"].ToString();
                 user.UserJobTitle = rq["UserJobTitle"].ToString();
                 rq.Dispose();
             }
