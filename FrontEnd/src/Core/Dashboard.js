@@ -61,12 +61,7 @@ class Dashboard extends React.Component {
          
         </div>
         );
-      case "help":
-        return(
-        <div>
-
-        </div>
-        );
+      
       case "newquestion":
         return(
         <div class="question_tab">
@@ -160,7 +155,15 @@ class Dashboard extends React.Component {
           <button class="editprofileconfirmbutton"style={{marginLeft:"800px"}} >Confirm</button>
         </div>
       );
-
+        case "help":
+          return(
+            <div>
+              <div class="hello">
+                <h2 style={{marginLeft: "60px"}}>Help </h2>
+              </div>
+              <hr class="solid"/>
+            </div>
+          );
     }
   }
 
