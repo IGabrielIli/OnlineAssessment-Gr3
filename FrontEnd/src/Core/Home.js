@@ -28,6 +28,8 @@ class Home extends React.Component {
     }
     onLoginClick(e) {
         this.setState({
+            signupErrorText: "",
+            signupSuccessText: "",
             loginErrorText: "Invalid username/password combination"
         })
     }
@@ -63,30 +65,40 @@ class Home extends React.Component {
         };
         if (signupDetails[3] != signupDetails[4]) {
             this.setState({
+                signupSuccessText: "",
+                loginErrorText: "",
                 signupErrorText: "Confirm password is not matching"
             });
             return;
         }
         if (signupDetails[0] == '') {
             this.setState({
+                signupSuccessText: "",
+                loginErrorText: "",
                 signupErrorText: "Username is a required field"
             });
             return;
         }
         if (signupDetails[1] == '') {
             this.setState({
+                signupSuccessText: "",
+                loginErrorText: "",
                 signupErrorText: "Real name is a required field"
             });
             return;
         }
         if (signupDetails[2] == '') {
             this.setState({
+                signupSuccessText: "",
+                loginErrorText: "",
                 signupErrorText: "Email is a required field"
             });
             return;
         }
         if (signupDetails[3] == '') {
             this.setState({
+                signupSuccessText: "",
+                loginErrorText: "",
                 signupErrorText: "Password is a required field"
             });
             return;
