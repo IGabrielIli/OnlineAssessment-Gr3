@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend;
 using Backend.Models;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
 {
@@ -14,6 +15,29 @@ namespace Backend.Controllers
         public QuestionController(ILogger<QuestionController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpPost]
+        public void Create([FromForm]Question question)
+        {
+            if (OracleConnect.conn != null && question.QuestionId != null)
+            {
+                using OracleCommand command = OracleConnect.conn.CreateCommand();
+                command.CommandText =
+                    "Insert into Questions " +
+                    "(QuestionId, QuestionText, ) " + //TODO...
+                    "values(:QuestionId, :QuestionText) ";
+                var hash = Hash.SHA1(question.QuestionText);
+                command.Parameters.Add(new OracleParameter("QuestionId", hash));
+                command.Parameters.Add(new OracleParameter("QuestionText", question.QuestionText));
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         [HttpGet("byId")]

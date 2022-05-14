@@ -15,9 +15,12 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public void Post(Answer answer)
+        public void Create([FromForm]Answer answer)
         {
+            if (OracleConnect.conn != null && answer.QuestionId != null)
+            {
 
+            }
         }
 
         [HttpGet("byId")]

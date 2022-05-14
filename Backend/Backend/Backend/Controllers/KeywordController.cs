@@ -15,6 +15,15 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
+        public void Create([FromForm]Keyword keyword)
+        {
+            if (OracleConnect.conn != null && keyword.KeywordId != null)
+            {
+
+            }
+        }
+
         [HttpGet("byId")]
         public Keyword Get(int id)
         {
