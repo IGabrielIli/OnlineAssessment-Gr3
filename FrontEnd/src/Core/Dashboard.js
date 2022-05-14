@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
         return(
         <div>
             <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
-            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
+            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create" onClick={() => this.onTabClick("newexam")}>create one now</Link></h2><br/><br/>
             <hr class="solid"/>
             <h3 style={{marginLeft: "25px"}}>Recent Assessmets</h3>
             <div class="assess">
