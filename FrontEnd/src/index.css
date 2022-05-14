@@ -21,7 +21,7 @@ h1{
 
 h2{
   color: white;
-  font-size: 35px;
+  font-size: 40px;
 }
 
 h3{
@@ -268,6 +268,7 @@ hr{
 
 .question_tab {
   padding-left: 25px;
+  
 }
 
 .button:hover {
@@ -303,6 +304,7 @@ hr{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
 }
 
 .container input {
@@ -313,6 +315,7 @@ hr{
 }
 
 .checkmark {
+  margin-top: 40px;
   position: absolute;
   top: 4px;
   left: 0;
@@ -352,11 +355,12 @@ hr{
 }
 
 .container .answer {
-  width: 30%;
-  padding: 12px 12px;
+  margin-top: 10px;
+  width: 97%;
+  height: 120px;
+  padding: 5px;
   box-sizing: border-box;
   border: 3px solid #ccc;
-  padding: 20px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
@@ -450,7 +454,7 @@ hr{
 }
 
 .form__message--success {
-    color: #4bb544;
+    color: #34802e;
 }
 
 .form__message--error {
@@ -554,98 +558,6 @@ button {
 #header button {
   background-color:#92a1d1;
 }
-#weekdays {
-  width: 100%;
-  display: flex;
-  color: #247BA0;
-}
-#weekdays div {
-  width: 100px;
-  padding: 10px;
-}
-#calendar {
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
-.day {
-  width: 100px;
-  padding: 10px;
-  height: 100px;
-  cursor: pointer;
-  box-sizing: border-box;
-  background-color: white;
-  margin: 5px;
-  box-shadow: 0px 0px 3px #CBD4C2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.day:hover {
-  background-color: #e8faed;
-}
-
-.day + .currentDay {
-  background-color:#e8f4fa;
-}
-.event {
-  font-size: 10px;
-  padding: 3px;
-  background-color: #58bae4;
-  color: white;
-  border-radius: 5px;
-  max-height: 55px;
-  overflow: hidden;
-}
-.padding {
-  cursor: default !important;
-  background-color: #FFFCFF !important;
-  box-shadow: none !important;
-}
-#newEventModal, #deleteEventModal {
-  z-index: 20;
-  padding: 25px;
-  background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
-  border-radius: 5px;
-  width: 350px;
-  top: 100px;
-  left: calc(50% - 175px);
-  position: absolute;
-  font-family: sans-serif;
-}
-#eventTitleInput {
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 25px;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-  box-shadow: 0px 0px 3px gray;
-}
-#eventTitleInput.error {
-  border: 2px solid red;
-}
-#cancelButton, #deleteButton {
-  background-color: #d36c6c;
-}
-#saveButton, #closeButton {
-  background-color: #92a1d1;
-}
-#eventText {
-  font-size: 14px;
-}
-#modalBackDrop {
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background-color: rgba(0,0,0,0.8);
-}
 
 .backg{
   background-color: #064663;
@@ -701,12 +613,35 @@ button {
   margin-left: 600px;
 }
 
+.examdetailslabels{
+  margin-bottom: 10px;
+  color: white;
+  font-size: 30px;
+  padding-right: 100px;
+  
+}
+
 .details{
   float: right;
   margin-top: 20px;
   margin-right: 600px;
   width: 300px;
   height: 30px;
+}
+
+.newexamdetails{
+  margin-right: 600px;
+  width: 600px;
+  height: 40px;
+  color: black;
+  font-size: 20px;
+}
+
+.examdetailsdivs{
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 500px;
 }
 
 .details1{
@@ -718,6 +653,7 @@ button {
   color: white;
   font-size: 20px;
 }
+
 
 div.help-body {
   display: grid;
@@ -758,4 +694,122 @@ h3{
 }
 ul{
   margin-left: 25px;
+}
+
+.questioninput{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 1300px;
+  height: 100px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 20px;
+}
+
+
+
+.answersdiv{
+  margin-top: 20px;
+  float: left;
+  margin-left: 20px;
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y:auto;
+  border:white;
+  border-top: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-right: 14px;
+  width: 1300px;
+  height: 360px;
+  background-color: #064663;
+}
+
+.addanswerbtn{
+  margin-right: 550px;
+  margin-bottom: 10px;
+  float: right;
+  font-weight: bold;
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: white;
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.typeyouranswers{
+  float: left;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.submitquestionbtn{
+  float: right;
+  margin-left: 600px;
+  float: inline-end;
+  font-weight: bold;
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: white;
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.submitquestiondiv{
+  margin-bottom: 30px;
+  margin-right: 100px;
+}
+
+.QuestionDifficulty{
+  
+  font-size: 25px;
+}
+
+
+.difficultyradiobtns{
+  margin-right: 80px;
+  color: white;
+  font-size: 20px;
+  border:white;
+  border-top: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  
+}
+
+.questiondiffdiv{
+  position:absolute;
+    bottom:0;
+    right:0;
+  margin-right: 170px;  
+  margin-bottom: 120px;
+}
+
+.radiolabels{
+  margin-left: 20px;
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Backend;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
 {
@@ -15,9 +16,28 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public void Post(Answer answer)
+        public void Create([FromForm]Answer answer)
         {
-
+            if (OracleConnect.conn != null && answer.QuestionId != null)
+            {
+                using OracleCommand command = OracleConnect.conn.CreateCommand();
+                command.CommandText =
+                    "Insert into Answer " +
+                    "(AnswerId, QuestionId, AnswerText, IsCorrect) " +
+                    "values(:AnswerId, :QuestionId, :AnswerText, :IsCorrect) ";
+                var hash = Hash.SHA1(answer.AnswerText);
+                command.Parameters.Add(new OracleParameter("AnswerId", hash));
+                command.Parameters.Add(new OracleParameter("QuestionId", answer.QuestionId));
+                command.Parameters.Add(new OracleParameter("AnswerText", answer.AnswerText));
+                command.Parameters.Add(new OracleParameter("IsCorrect", answer.IsCorrect));
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         [HttpGet("byId")]

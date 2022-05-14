@@ -4,7 +4,7 @@ import { DBType, fetchDynamicItem } from './Interact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 
-let answersSize = 1;
+let answersSize = 2;
 let answersArray = [''];
 let selectedArray = [0];
 
@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
         return(
         <div>
             <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
-            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create">create one now</Link></h2><br/><br/>
+            <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create" onClick={() => this.onTabClick("newexam")}>create one now</Link></h2><br/><br/>
             <hr class="solid"/>
             <h3 style={{marginLeft: "25px"}}>Recent Assessmets</h3>
             <div class="assess">
@@ -38,8 +38,8 @@ class Dashboard extends React.Component {
         return(
           <div>
             <div class="hello">
-            <h2 style={{marginLeft: "60px"}}>Your Assessments </h2>
-              <button class="createassess"style={{marginLeft:"1500px"}}>Create New</button>
+            <h2 style={{marginLeft: "60px"}}>Your Exams </h2>
+              <button class="createassess"style={{marginLeft:"1500px"}}onClick={() => this.onTabClick("newexam")}>Create New</button>
             </div>
             <hr class="solid"/>
             <div class="assessExam">
@@ -47,31 +47,147 @@ class Dashboard extends React.Component {
             </div>
           </div>
         );
+      case "newexam":
+        return(
+          <div>
+            <div class="hello">
+              <h2 style={{marginLeft: "60px"}}>New Exam </h2>
+            </div>
+            <div class="submitquestiondiv">
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
+              </div>
+              <br></br>
+            <hr class="solid"/>
+            
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Exam Title:*</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Password:</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Keywords:</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+            </div>
+          
+        );
       case "questions":
         return(
           <div>
-                <Link to="#newquestion" onClick={() => this.onTabClick("newquestion")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-          </div>
+            <div class="hello">
+            <h2 style={{marginLeft: "60px"}}>Your Questions </h2>
+              <button class="createassess"style={{marginLeft:"1500px"}} onClick={() => this.onTabClick("newquestion")}>Create New</button>
+            </div>
+            <hr class="solid"/>
+            <div class="assessExam">
+              {this.drawAssessments()}
+            </div>
+           </div>
         );
-      case "calendar":
-
-      
-        return (
-        <div>
-         
-        </div>
-        );
-      
       case "newquestion":
         return(
-        <div class="question_tab">
-          {this.drawCurrentAnswers()}
-          <br/><br/>
           <div>
-            <button type="button" onClick={ () => this.handleAddAnswer() }>Add</button>
+            <div class="hello">
+              <h2 style={{marginLeft: "60px"}}>New Question </h2>
+            </div>
+            <div class="submitquestiondiv">
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Question</button>
+              </div>
+              <br></br>
+            <hr class="solid"/>
+            <div>
+              <label style={{color:"white",marginLeft:"20px",fontSize:"20px"}}>Type your Question</label><br></br>
+              <textarea class="questioninput"></textarea><br></br>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px",marginLeft:"20px"}}>
+                      <i class="fa fa-bold" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-underline" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-italic" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-list-ul" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-superscript" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"28px",marginTop:"5px"}}>
+                      <i class="fa fa-trash" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+            </div>
+            <div>
+                <h3 class="typeyouranswers">Type your Answers</h3>
+                <button class="addanswerbtn" type="button" style={{color:"#04293A"}} onClick={ () => this.handleAddAnswer() }>Add Answer</button>
+              </div>
+            <div class="answersdiv">
+              <div class="question_tab">
+              {this.drawCurrentAnswers()}
+              <br/><br/>
+            </div>
+            
+            </div >
+            <div class="questiondiffdiv">
+              <h3 class="QuestionDifficulty">Question Difficulty</h3>
+              <div class="difficultyradiobtns">
+                <input type="radio" id="html" name="fav_language" value="HTML"></input>
+                <label for="html" class="radiolabels">1</label><br></br>
+                <input type="radio" id="css" name="fav_language" value="CSS"></input>
+                <label for="css" class="radiolabels">2</label><br></br>
+                <input type="radio" id="javascript" name="fav_language" value="JavaScript"></input>
+                <label for="javascript" class="radiolabels">3</label><br></br>
+                <input type="radio" id="css" name="fav_language" value="CSS"></input>
+                <label for="css" class="radiolabels">4</label><br></br>
+                <input type="radio" id="javascript" name="fav_language" value="JavaScript"></input>
+                <label for="javascript" class="radiolabels">5</label>
+              </div>
+            </div>
           </div>
-        </div>
-      );
+        );
       case "notifications" :
       return(
         <div>
@@ -249,10 +365,54 @@ class Dashboard extends React.Component {
       <div>
         <label class="container">
           <input type="checkbox" onChange={ (e) => this.handleSelectedChange(e, id) } />
+          <textarea class="answer"onChange={ (e) => this.handleAnswerChange(e, id) }></textarea>
+          <br></br>
+          <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-bold" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-underline" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-italic" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-list-ul" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-superscript" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
+              <a href="#" class="questiontoolbar">
+                <Link to="#notifications" onClick={() => this.onTabClick("")}>
+                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
+                      <i class="fa fa-trash" style={{color: "white"}}></i>
+                  </span>
+                </Link>
+              </a>
           <span class="checkmark" style={{marginRight:"28px"}} />
-          <input type="text" class="answer" onChange={ (e) => this.handleAnswerChange(e, id) }/>
         </label>
-        <br/><br/><br/>
+        
+        
       </div>
     )
   }
@@ -266,12 +426,10 @@ class Dashboard extends React.Component {
 
   handleSelectedChange(e, id) {
     selectedArray[id] = e.target.checked;
-    // console.log(selectedArray[id]);
   }
 
   handleAnswerChange(e, id) {
     answersArray[id] = e.target.value;
-    // console.log(answersArray[id]);
   }
 
   drawAssessment(id) {
@@ -332,7 +490,7 @@ class Dashboard extends React.Component {
                       </Link>
                       </a>
                       <a href="#" class="but">
-                      <Link to="#profile" onClick  >
+                      <Link to="../" onClick  >
                         <span class="fa-stack" style={{fontSize:"30px"}}>
                           <i class="fa fa-sign-out" style={{fontSize:"48px",color:"white",marginTop:"8px"}}></i>
                         </span>
@@ -345,7 +503,6 @@ class Dashboard extends React.Component {
                 <Link to="#main" onClick={() => this.onTabClick("main")} class ="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-home" ></i> <br/><label style={{fontSize: "18px" }}>Home</label></Link>
                 <Link to="#exams" onClick={() => this.onTabClick("exams")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exam</label></Link>
                 <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-                <Link to="#calendar" onClick={() => this.onTabClick("calendar")} class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></Link>
                 <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
               </div>
               </div>
