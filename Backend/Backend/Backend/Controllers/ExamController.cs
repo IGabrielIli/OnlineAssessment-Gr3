@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
 {
@@ -18,11 +19,31 @@ namespace Backend.Controllers
         [HttpPost]
         public void Create([FromForm]Exam exam)
         {
-            if (OracleConnect.conn != null && exam.UserId != null)
+            if (OracleConnect.conn != null && exam.ExamId != null)
             {
-
+                using OracleCommand command = OracleConnect.conn.CreateCommand();
+                command.CommandText =
+                    "Insert into Exam " +
+                    "(ExamId, UserId, ExamAvgDifficulty, ExamDate, ExamTimerSeconds, ExamQuestionAmount, ExamName, ExamPassword, ExamCategory, ExamDescription) " +
+                    "values(:ExamId, :UserId, :ExamAvgDifficulty, :ExamDate, :ExamTimerSeconds, :ExamQuestionAmount, :ExamName, :ExamPassword, :ExamCategory, :ExamDescription ) ";
                 var hash = Hash.SHA1(exam.UserId + exam.ExamName);
-
+                command.Parameters.Add(new OracleParameter("ExamId", hash));
+                command.Parameters.Add(new OracleParameter("UserId", exam.UserId));
+                command.Parameters.Add(new OracleParameter("ExamAvgDifficulty", exam.ExamAvgDifficulty));
+                command.Parameters.Add(new OracleParameter("ExamDate", exam.ExamDate));
+                command.Parameters.Add(new OracleParameter("ExamTimerSeconds", exam.ExamTimerSeconds));
+                command.Parameters.Add(new OracleParameter("ExamQuestionAmount", exam.ExamQuestionAmount));
+                command.Parameters.Add(new OracleParameter("ExamName", exam.ExamName));
+                command.Parameters.Add(new OracleParameter("ExamPassword", exam.ExamPassword));
+                command.Parameters.Add(new OracleParameter("ExamCategory", exam.ExamCategory));
+                command.Parameters.Add(new OracleParameter("ExamDescription", exam.ExamDescription));
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                }
             }
         }
 
@@ -41,7 +62,7 @@ namespace Backend.Controllers
                     exam.ExamName = rq["ExamName"].ToString();
                     exam.ExamDate = rq["ExamStartDate"].ToString();
                     exam.ExamCategory = rq["ExamCategory"].ToString();
-                    exam.ExamPasswordMD5 = rq["ExamPassword"].ToString();
+                    exam.ExamPassword = rq["ExamPassword"].ToString();
                     exam.ExamTimerSeconds = rq["ExamTimerSeconds"].ToString();
                     exam.ExamDescription = rq["ExamDescription"].ToString();
                     exam.ExamAvgDifficulty = rq["ExamAvgDifficulty"].ToString();
