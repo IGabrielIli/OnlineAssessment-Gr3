@@ -9,7 +9,7 @@
         public string? ExamTimerSeconds { get; set; }
         public string? ExamQuestionAmount { get; set; }
         public string? ExamName { get; set; }
-        public string? ExamPasswordMD5 { get; set; }
+        public string? ExamPassword { get; set; }
         public string? ExamCategory { get; set; }
         public string? ExamDescription { get; set; }
     }
