@@ -4,7 +4,7 @@ import { DBType, fetchDynamicItem } from './Interact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 
-let answersSize = 1;
+let answersSize = 2;
 let answersArray = [''];
 let selectedArray = [0];
 
@@ -365,12 +365,10 @@ class Dashboard extends React.Component {
 
   handleSelectedChange(e, id) {
     selectedArray[id] = e.target.checked;
-    // console.log(selectedArray[id]);
   }
 
   handleAnswerChange(e, id) {
     answersArray[id] = e.target.value;
-    // console.log(answersArray[id]);
   }
 
   drawAssessment(id) {
@@ -431,7 +429,7 @@ class Dashboard extends React.Component {
                       </Link>
                       </a>
                       <a href="#" class="but">
-                      <Link to="#profile" onClick  >
+                      <Link to="../" onClick  >
                         <span class="fa-stack" style={{fontSize:"30px"}}>
                           <i class="fa fa-sign-out" style={{fontSize:"48px",color:"white",marginTop:"8px"}}></i>
                         </span>

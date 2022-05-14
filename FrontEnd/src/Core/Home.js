@@ -35,7 +35,7 @@ class Home extends React.Component {
         fetch(url)
             .then(response => response.text())
             .then(data => {
-                if (data == "-1") {
+                if (data == "-1" || data.length != 40) {
                     this.setState({
                         signupErrorText: "",
                         signupSuccessText: "",

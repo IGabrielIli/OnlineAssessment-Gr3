@@ -14,6 +14,18 @@ namespace Backend.Controllers
             _logger = logger;
         }
 
+
+        [HttpPost]
+        public void Create([FromForm]Exam exam)
+        {
+            if (OracleConnect.conn != null && exam.UserId != null)
+            {
+
+                var hash = Hash.SHA1(exam.UserId + exam.ExamName);
+
+            }
+        }
+
         [HttpGet("byUserId")]
         public IEnumerable<Exam> GetAll(int id)
         {
