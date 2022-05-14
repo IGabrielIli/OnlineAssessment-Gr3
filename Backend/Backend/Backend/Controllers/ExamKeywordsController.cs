@@ -16,9 +16,10 @@ namespace Backend.Controllers
         }
 
         [HttpGet("byId")]
-        public IEnumerable<ExamKeywords> GetAll(int id)
+        public IEnumerable<Keyword> GetAll(int id)
         {
             var rq = OracleConnect.ReaderQuery("Select * from ExamKeywords where ExamId=" + id.ToString());
+            IEnumerable<Keyword> keywords = new List<Keyword>();
             IEnumerable<ExamKeywords> examkeywords = new List<ExamKeywords>();
             if (rq != null)
             {
@@ -31,7 +32,24 @@ namespace Backend.Controllers
                 }
                 rq.Dispose();
             }
-            return examkeywords.ToArray();
+
+            for (int i = 0; i < examkeywords.Count(); i++)
+            {
+                if (examkeywords.ElementAt(i).KeywordId != null)
+                {
+                    var rq1 = OracleConnect.ReaderQuery("Select * from Keywords where KeywordId=" + examkeywords.ElementAt(i).KeywordId.ToString());
+                    if (rq1 != null)
+                    {
+                        rq1.Read();
+                        Keyword keyword = new Keyword();
+                        keyword.KeywordId = rq1["KeywordId"].ToString();
+                        keyword.KeywordText = rq1["KeywordText"].ToString();
+                        keywords = keywords.Append(keyword);
+                        rq1.Dispose();
+                    }
+                }
+            }
+            return keywords;
         }
     }
 }

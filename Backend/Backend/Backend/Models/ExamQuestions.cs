@@ -4,7 +4,5 @@ namespace Backend
     {
         public string? ExamId { get; set; }
         public string? QuestionId { get; set; }
-        
-
     }
 }
