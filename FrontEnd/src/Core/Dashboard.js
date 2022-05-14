@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
           <div>
             <div class="hello">
             <h2 style={{marginLeft: "60px"}}>Your Exams </h2>
-              <button class="createassess"style={{marginLeft:"1500px"}}>Create New</button>
+              <button class="createassess"style={{marginLeft:"1500px"}}onClick={() => this.onTabClick("newexam")}>Create New</button>
             </div>
             <hr class="solid"/>
             <div class="assessExam">
@@ -47,17 +47,61 @@ class Dashboard extends React.Component {
             </div>
           </div>
         );
+      case "newexam":
+        return(
+          <div>
+            <div class="hello">
+              <h2 style={{marginLeft: "60px"}}>New Exam </h2>
+            </div>
+            <div class="submitquestiondiv">
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
+              </div>
+              <br></br>
+            <hr class="solid"/>
+            
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Exam Title:*</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Password:</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div class="examdetailsdivs">
+                <label class="examdetailslabels">Keywords:</label><br></br>
+                <input type="text" class="newexamdetails"></input>
+              </div>
+            </div>
+          
+        );
       case "questions":
         return(
           <div>
-                <Link to="#newquestion" onClick={() => this.onTabClick("newquestion")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-          </div>
-        );
-      case "calendar":
-        return (
-          <div>
-         
-          </div>
+            <div class="hello">
+            <h2 style={{marginLeft: "60px"}}>Your Questions </h2>
+              <button class="createassess"style={{marginLeft:"1500px"}} onClick={() => this.onTabClick("newquestion")}>Create New</button>
+            </div>
+            <hr class="solid"/>
+            <div class="assessExam">
+              {this.drawAssessments()}
+            </div>
+           </div>
         );
       case "newquestion":
         return(
@@ -400,7 +444,6 @@ class Dashboard extends React.Component {
                 <Link to="#main" onClick={() => this.onTabClick("main")} class ="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-home" ></i> <br/><label style={{fontSize: "18px" }}>Home</label></Link>
                 <Link to="#exams" onClick={() => this.onTabClick("exams")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exam</label></Link>
                 <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-                <Link to="#calendar" onClick={() => this.onTabClick("calendar")} class="sbb" style={{paddingLeft: "16px"}}><i class="fa fa-calendar"></i><br/><label style={{fontSize: "18px" }}>Calendar</label></Link>
                 <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
               </div>
               </div>
