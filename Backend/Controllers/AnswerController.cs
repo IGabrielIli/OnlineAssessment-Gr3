@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Backend;
 using Oracle.ManagedDataAccess.Client;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class AnswerController : ControllerBase
     {
         private readonly ILogger<AnswerController> _logger;
@@ -16,7 +18,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public void Create([FromForm]Answer answer)
+        public string Create([FromForm]Answer answer)
         {
             if (OracleConnect.conn != null && answer.QuestionId != null)
             {
@@ -33,11 +35,13 @@ namespace Backend.Controllers
                 try
                 {
                     command.ExecuteNonQuery();
+                    return "success";
                 }
                 catch (Exception)
                 {
                 }
             }
+            return "fail";
         }
 
         [HttpGet("byId")]

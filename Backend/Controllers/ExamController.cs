@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend;
 using Oracle.ManagedDataAccess.Client;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class ExamController : ControllerBase
     {
         private readonly ILogger<ExamController> _logger;
@@ -17,7 +19,7 @@ namespace Backend.Controllers
 
 
         [HttpPost]
-        public void Create([FromForm]Exam exam)
+        public string Create([FromForm]Exam exam)
         {
             if (OracleConnect.conn != null && exam.ExamId != null)
             {
@@ -25,7 +27,7 @@ namespace Backend.Controllers
                 command.CommandText =
                     "Insert into Exam " +
                     "(ExamId, UserId, ExamAvgDifficulty, ExamDate, ExamTimerSeconds, ExamQuestionAmount, ExamName, ExamPassword, ExamCategory, ExamDescription) " +
-                    "values(:ExamId, :UserId, :ExamAvgDifficulty, :ExamDate, :ExamTimerSeconds, :ExamQuestionAmount, :ExamName, :ExamPassword, :ExamCategory, :ExamDescription ) ";
+                    "values(:ExamId, :UserId, :ExamAvgDifficulty, :ExamDate, :ExamTimerSeconds, :ExamQuestionAmount, :ExamName, :ExamPassword, :ExamCategory, :ExamDescription) ";
                 var hash = Hash.SHA1(exam.UserId + exam.ExamName);
                 command.Parameters.Add(new OracleParameter("ExamId", hash));
                 command.Parameters.Add(new OracleParameter("UserId", exam.UserId));
@@ -40,11 +42,13 @@ namespace Backend.Controllers
                 try
                 {
                     command.ExecuteNonQuery();
+                    return "success";
                 }
                 catch (Exception)
                 {
                 }
             }
+            return "fail";
         }
 
         [HttpGet("byUserId")]

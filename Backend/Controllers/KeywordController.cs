@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend;
 using Backend.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class KeywordController : ControllerBase
     {
         private readonly ILogger<KeywordController> _logger;
