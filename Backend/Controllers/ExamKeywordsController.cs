@@ -37,7 +37,7 @@ namespace Backend.Controllers
             {
                 if (examkeywords.ElementAt(i).KeywordId != null)
                 {
-                    var rq1 = OracleConnect.ReaderQuery("Select * from Keywords where KeywordId=" + examkeywords.ElementAt(i).KeywordId.ToString());
+                    var rq1 = OracleConnect.ReaderQuery("Select * from Keyword where KeywordId=" + examkeywords.ElementAt(i).KeywordId.ToString());
                     if (rq1 != null)
                     {
                         rq1.Read();

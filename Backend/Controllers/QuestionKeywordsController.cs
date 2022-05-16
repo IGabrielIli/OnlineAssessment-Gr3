@@ -16,9 +16,11 @@ namespace Backend.Controllers
         }
 
         [HttpGet("byId")]
-        public IEnumerable<QuestionKeywords> GetAll(int id)
+        public IEnumerable<Keyword> GetAll(int id)
+
         {
             var rq = OracleConnect.ReaderQuery("Select * from QuestionKeywords where QuestionId=" + id.ToString());
+            IEnumerable<Keyword> keywords = new List<Keyword>();
             IEnumerable<QuestionKeywords> questionKeywords = new List<QuestionKeywords>();
             if (rq != null)
             {
@@ -31,7 +33,23 @@ namespace Backend.Controllers
                 }
                 rq.Dispose();
             }
-            return questionKeywords.ToArray();
+            for (int i = 0; i < questionKeywords.Count(); i++)
+            {
+                if (questionKeywords.ElementAt(i).KeywordId != null)
+                {
+                    var rq1 = OracleConnect.ReaderQuery("Select * from Keyword where KeywordId=" + questionKeywords.ElementAt(i).KeywordId.ToString());
+                    if (rq1 != null)
+                    {
+                        rq1.Read();
+                        Keyword keyword = new Keyword();
+                        keyword.KeywordId = rq1["KeywordId"].ToString();
+                        keyword.KeywordText = rq1["KeywordText"].ToString();
+                        keywords = keywords.Append(keyword);
+                        rq1.Dispose();
+                    }
+                }
+            }
+            return keywords;
         }
     }
 }
