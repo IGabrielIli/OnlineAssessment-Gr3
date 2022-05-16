@@ -631,16 +631,17 @@ button {
 }
 
 .newexamdetails{
-  margin-right: 600px;
+  margin-right: 0px;
   width: 600px;
   height: 40px;
   color: black;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .examdetailsdivs{
-  float: left;
-  margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 300px;
   margin-top: 20px;
   width: 500px;
 }
@@ -687,6 +688,7 @@ main#main-doc {
   margin-right: 350px;
   margin-left: -1px;
   padding-left: 50px;
+  padding: 40px;
 }
 h3{
   color: #064663;
@@ -782,6 +784,10 @@ ul{
 }
 
 .submitquestiondiv{
+  position: absolute;
+  top: 0;
+  margin-top: 670px;
+  margin-left:190px ;
   margin-bottom: 30px;
   margin-right: 100px;
 }
@@ -834,4 +840,48 @@ ul{
 .questionImgUrldiv{
   float: right;
   margin-right: 155px;
+}
+
+.newexamdifficultyradiobtns{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 280px;
+  margin-right: 500px;
+  color: white;
+  font-size: 20px;
+  
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  
+}
+
+.newexamquestionnumberdiv{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 390px;
+  margin-right: 588px;
+  color: white;
+  font-size: 20px;
+ 
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.newexamesettime{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 510px;
+  margin-right: 520px;
+  color: white;
+  font-size: 20px;
+  
+  
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
 }
