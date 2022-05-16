@@ -86,7 +86,7 @@ class Dashboard extends React.Component {
                 <br></br>
                 <br></br>
               </div>
-              <div class="submitquestiondiv">
+              <div class="submitexamdiv">
                 <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
               </div>
             </div>
