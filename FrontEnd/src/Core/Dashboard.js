@@ -344,7 +344,16 @@ class Dashboard extends React.Component {
       case "beforeexam": {
         return (
           <div>
+            <div class="hello">
+                <center><h2>Exam title</h2>
+                
+            <hr class="solid"/>
+            <div class="assessbeforeexam"></div>
+            <input type="button" class = "startbutton" onclick="/duringexam;" value="Start your try" />
+            <input type="button" class = "backbutton" onclick="/dashboard;" value="Back" />
 
+                </center>
+               </div>
           </div>
         );
       }
