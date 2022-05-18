@@ -53,39 +53,41 @@ class Dashboard extends React.Component {
             <div class="hello">
               <h2 style={{marginLeft: "60px"}}>New Exam </h2>
             </div>
-            <div class="submitquestiondiv">
-                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
-              </div>
-              <br></br>
-            <hr class="solid"/>
             
+              <br></br>
+            <hr class="solid" />
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Exam Title:*</label><br></br>
                 <input type="text" class="newexamdetails"></input>
               </div>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Password:</label><br></br>
                 <input type="text" class="newexamdetails"></input>
               </div>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Keywords:</label><br></br>
                 <input type="text" class="newexamdetails"></input>
+              </div>
+              <div class="newexamdifficultyradiobtns">
+                <label for="quantity" style={{marginBottom:"10px"}}>Average Exam Difficulty (1 to 5):</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="newexamquestionnumberdiv">
+                <label for="quantity" style={{marginBottom:"10px"}}>Number Of Questions:</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="2" max="500"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="newexamesettime">
+                <label for="quantity" style={{marginBottom:"10px"}}>Set Exam Length (in minutes):</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="1" max="420"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="submitquestiondiv">
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
               </div>
             </div>
           
@@ -286,6 +288,7 @@ class Dashboard extends React.Component {
                   <div class="hello">
                     <center><h2>{fetchDynamicItem(DBType.PROJECT_TITLE)} Documentation</h2></center>
                   </div>
+                  <hr class="solid"/>
                <div class='help-body'>
 
                   <main id="main-doc">
@@ -347,7 +350,7 @@ class Dashboard extends React.Component {
                     </section>
                   </main>
                 </div>
-              <hr class="solid"/>
+              
             </div>
           );
     }
