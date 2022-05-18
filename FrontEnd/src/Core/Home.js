@@ -154,7 +154,7 @@ class Home extends React.Component {
                     <div class="form__message form__message--error">{this.state.loginErrorText}</div>
                     <div class="form__message form__message--success">{this.state.signupSuccessText}</div>
                     <div class="form__input-group">
-                        <input type="text" class="form__input" onChange={ (e) => this.onLoginInputChange(e, 0) } autofocus placeholder="Username or email"/>
+                        <input type="text" class="form__input" onChange={ (e) => this.onLoginInputChange(e, 0) } autofocus placeholder="Username"/>
                         <div class="form__input-error-message"></div>
                     </div>
                     <div class="form__input-group">

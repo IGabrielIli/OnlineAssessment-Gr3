@@ -53,39 +53,41 @@ class Dashboard extends React.Component {
             <div class="hello">
               <h2 style={{marginLeft: "60px"}}>New Exam </h2>
             </div>
-            <div class="submitquestiondiv">
-                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
-              </div>
-              <br></br>
-            <hr class="solid"/>
             
+              <br></br>
+            <hr class="solid" />
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Exam Title:*</label><br></br>
                 <input type="text" class="newexamdetails"></input>
               </div>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Password:</label><br></br>
                 <input type="text" class="newexamdetails"></input>
               </div>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
               <div class="examdetailsdivs">
                 <label class="examdetailslabels">Keywords:</label><br></br>
                 <input type="text" class="newexamdetails"></input>
+              </div>
+              <div class="newexamdifficultyradiobtns">
+                <label for="quantity" style={{marginBottom:"10px"}}>Average Exam Difficulty (1 to 5):</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="newexamquestionnumberdiv">
+                <label for="quantity" style={{marginBottom:"10px"}}>Number Of Questions:</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="2" max="500"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="newexamesettime">
+                <label for="quantity" style={{marginBottom:"10px"}}>Set Exam Length (in minutes):</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="1" max="420"></input>
+                <br></br>
+                <br></br>
+              </div>
+              <div class="submitquestiondiv">
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
               </div>
             </div>
           
@@ -160,10 +162,13 @@ class Dashboard extends React.Component {
                 </Link>
               </a>
             </div>
+            <div class="questionImgdiv">
+            <img src="https://www.learningcontainer.com/wp-content/uploads/2020/08/Sample-png-Image-for-Testing.png" alt="Cheetah!" style={{width:"300px",height:"200px"}}/> 
+            </div>
             <div>
                 <h3 class="typeyouranswers">Type your Answers</h3>
                 <button class="addanswerbtn" type="button" style={{color:"#04293A"}} onClick={ () => this.handleAddAnswer() }>Add Answer</button>
-              </div>
+            </div>
             <div class="answersdiv">
               <div class="question_tab">
               {this.drawCurrentAnswers()}
@@ -171,19 +176,25 @@ class Dashboard extends React.Component {
             </div>
             
             </div >
+            <div class="questionImgUrldiv">
+              <label for="quantity" style={{color:"white",marginBottom:"10px",fontSize:"20px"}}>Paste Image Url(max-size:300x200):</label><br></br>
+              <input type="text" class="" style={{width:"300px",height:"30px"}}></input>
+            </div>
+            <div class="questionkeywordsdiv">
+              <label for="quantity" style={{color:"white",marginBottom:"10px",fontSize:"20px"}}>Question Keywords:</label><br></br>
+              <input type="text" class="" style={{width:"300px",height:"30px"}}></input>
+            </div>
             <div class="questiondiffdiv">
-              <h3 class="QuestionDifficulty">Question Difficulty</h3>
               <div class="difficultyradiobtns">
-                <input type="radio" id="html" name="fav_language" value="HTML"></input>
-                <label for="html" class="radiolabels">1</label><br></br>
-                <input type="radio" id="css" name="fav_language" value="CSS"></input>
-                <label for="css" class="radiolabels">2</label><br></br>
-                <input type="radio" id="javascript" name="fav_language" value="JavaScript"></input>
-                <label for="javascript" class="radiolabels">3</label><br></br>
-                <input type="radio" id="css" name="fav_language" value="CSS"></input>
-                <label for="css" class="radiolabels">4</label><br></br>
-                <input type="radio" id="javascript" name="fav_language" value="JavaScript"></input>
-                <label for="javascript" class="radiolabels">5</label>
+                <label for="quantity" style={{marginBottom:"10px"}}>Question Difficulty (1 to 5):</label><br></br>
+                <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
+                <br></br>
+                <br></br>
+                <label for="quantity" style={{marginBottom:"10px"}}>Answer Apperance:</label><br></br>
+                <input type="radio" id="html" name="fav_language" value="CorrectOrder"></input>
+                <label for="correctOrder"> Correct Order</label><br></br>
+                <input type="radio" id="css" name="fav_language" value="Shuffle"></input>            
+                <label for="shuffle"> Shuffle</label><br></br>
               </div>
             </div>
           </div>
@@ -278,7 +289,6 @@ class Dashboard extends React.Component {
                   <center><h2>{fetchDynamicItem(DBType.PROJECT_TITLE)} Documentation</h2></center>
                 </div>
               <div class='help-body'>
-
                 <main id="main-doc">
                   <section class="main-section" id='Exams'>
                     <h3>Create New Exam Page</h3>                      
@@ -302,7 +312,6 @@ class Dashboard extends React.Component {
                   <section class="main-section" id='Questions'>
 
                     <h3>Creating New Questions</h3>
-
                     <p>Now you can start Creating Questions for your Exam. Go to the <b>Questions</b> tab on your dashboard and click <b>Create New Question</b></p>
                     <h4><b>On the Create New Questions tab you can:</b></h4>
                     <ul>
@@ -386,7 +395,7 @@ class Dashboard extends React.Component {
   drawAnswer(id) {
     return (
       <div>
-        <label class="container">
+        <div class="container">
           <input type="checkbox" onChange={ (e) => this.handleSelectedChange(e, id) } />
           <textarea class="answer"onChange={ (e) => this.handleAnswerChange(e, id) }></textarea>
           <br></br>
@@ -433,7 +442,7 @@ class Dashboard extends React.Component {
                 </Link>
               </a>
           <span class="checkmark" style={{marginRight:"28px"}} />
-        </label>
+        </div>
         
         
       </div>
