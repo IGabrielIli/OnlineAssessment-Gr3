@@ -133,6 +133,11 @@ hr.solidprofile {
   margin-top: 20px;
 }
 
+.assesskidbut:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 .assesskidname {
   margin-top: 3px;
   margin-left: 15px;
@@ -159,7 +164,7 @@ hr.solidprofile {
   font-size: 48px;
   line-height: 10px;
   border-radius: 5px;
-  padding-right: 25px;
+  padding-right: 27px;
   padding-bottom: 15px;
   padding-top: 15px;
   margin-top: 15px;
@@ -235,8 +240,6 @@ hr{
 .header a.but {
   padding: 5px;
 }
-
-
 
 .header a.but:hover {
   background-color: #ddd;
@@ -1030,7 +1033,7 @@ ul{
 }
 
 #my-pie-chart {
-  background: conic-gradient(green 60%,  red 40%);
+  
   border-radius: 50%;
   width: 300px;
   height: 300px;

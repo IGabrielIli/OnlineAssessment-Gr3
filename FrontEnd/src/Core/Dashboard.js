@@ -13,7 +13,40 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tab: "main",
+      curId: 0,//this.getParameterByName("id") ,
     };
+    //console.log(this.state.curId);
+  }
+
+  getParameterByName(name, url = window.location.href) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  getPassedPercentage(id) {
+    // var url = "https://localhost:7299/api/UserAttempt/"
+    // fetch(url)
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         if (data == "-1" || data.length != 40) {
+    //             this.setState({
+    //                 signupErrorText: "",
+    //                 signupSuccessText: "",
+    //                 loginErrorText: "Invalid username/password combination"})
+    //         } else {
+    //             document.cookie = data;
+    //             window.location.href = 'Dashboard';
+    //         }
+    //     });
+    return "50"
+  }
+
+  getNotPassedPercentage(id) {
+    return "50"
   }
 
   onTabClick(id) {
@@ -367,6 +400,8 @@ class Dashboard extends React.Component {
         );
       }
       case "analyze": {
+        var passedPercentage = this.getPassedPercentage(document.cookie)
+        var notPassedPercentage = this.getNotPassedPercentage(document.cookie)
         return (
           <div>
             <div class="hello">
@@ -388,7 +423,7 @@ class Dashboard extends React.Component {
               <div class="charts">
                 <div id="my-pie-chart-container">
                     <h2 class="rate">Success Rate</h2>
-                    <div id="my-pie-chart"></div>
+                    <div id="my-pie-chart" style={{background:"conic-gradient(green " + passedPercentage + "%,  red " + notPassedPercentage + "%)"}}></div>
                     <div id="legenda">
                       <div class="entry">
                         <div id="color-green" class="entry-color"></div>
@@ -498,7 +533,6 @@ class Dashboard extends React.Component {
 
   drawAssessment(id) {
     var link = "/exam?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
-    var charts_link = "/charts?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
     var edit_link = "/edit?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
     return (
         <div class="assesskid">
@@ -513,11 +547,12 @@ class Dashboard extends React.Component {
                 <FontAwesomeIcon icon={faPencil} />
               </Link>
             </span>
-            <span class="assesskidbut">
-              <Link to={(charts_link)}>
-                <FontAwesomeIcon icon={faChartColumn} />
-              </Link>
-            </span>
+            <a href="#" class="assesskidbut" onClick={() => { 
+                this.setState({tab: "analyze", curId: 0}); // TODO
+              }
+            }>
+              <FontAwesomeIcon icon={faChartColumn} />
+            </a>
             <br/>
             <span class="assesskiddate">Date created: {fetchDynamicItem(DBType.ASSESSMENT_DATE)}</span>
           </span>
@@ -564,10 +599,10 @@ class Dashboard extends React.Component {
               </div>
               <div class= "sidebar">
               <div class="w3-sidebar w3-bar-block" style={{ width: "100px", borderRightStyle:"solid", borderRightWidth: "5", borderRightColor: "#04293A", overflowY: "hidden", overflowX:"hidden", backgroundColor:"#04293A"}}>
-                <Link to="#main" onClick={() => this.onTabClick("main")} class ="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-home" ></i> <br/><label style={{fontSize: "18px" }}>Home</label></Link>
+                <Link to="#main" onClick={() => this.onTabClick("main")} class ="sbb" style={{paddingLeft: "24px", paddingRight: "24px"}}><i class="fa fa-home" ></i> <br/><label style={{fontSize: "18px" }}>Home</label></Link>
                 <Link to="#exams" onClick={() => this.onTabClick("exams")} class="sbb" style={{paddingLeft: "24px"}}><i class="fa fa-file"></i><br/><label style={{fontSize: "18px" }}>Exam</label></Link>
-                <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "13px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
-                <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "35px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
+                <Link to="#questions" onClick={() => this.onTabClick("questions")} class="sbb" style={{paddingLeft: "10px", paddingRight:"6px"}}><i class="fa fa-comment"></i><br/><label style={{fontSize: "18px" }}>Questions</label></Link>
+                <Link to="#help" onClick={() => this.onTabClick("help")} class="sbb" style={{paddingLeft: "30px", paddingRight:"30px"}}><i class="fa fa-info"></i><br/><label style={{fontSize: "18px" }}>Help</label></Link>
               </div>
               </div>
               <div class= "backg" style={{marginLeft: "105px"}}><br/>
