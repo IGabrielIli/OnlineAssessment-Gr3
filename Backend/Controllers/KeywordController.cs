@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Backend;
 using Backend.Models;
 using Microsoft.AspNetCore.Cors;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Backend.Controllers
 {
@@ -18,12 +19,28 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public void Create([FromForm]Keyword keyword)
+        public String Create([FromForm]Keyword keyword)
         {
             if (OracleConnect.conn != null && keyword.KeywordId != null)
             {
-
-            }
+                using OracleCommand command = OracleConnect.conn.CreateCommand();
+                command.CommandText =
+                    "Insert into Keyword " +
+                    "(KeywordId, KeywordText) " +
+                    "values(:KeywordId, :KeywordText) ";
+                var hash = Hash.SHA1(keyword.KeywordText.ToLower());
+                command.Parameters.Add(new OracleParameter("KeywordId", hash));
+                command.Parameters.Add(new OracleParameter("KeywordText", keyword.KeywordText));
+                try
+                {
+                    command.ExecuteNonQuery();
+                    return "success";
+                }
+                catch (Exception)
+                {
+                }
+            } 
+            return "Fail";
         }
 
         [HttpGet("byId")]
