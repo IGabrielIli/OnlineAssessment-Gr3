@@ -366,10 +366,42 @@ class Dashboard extends React.Component {
           </div>
         );
       }
-      case "duringexam": {
+      case "analyze": {
         return (
           <div>
-            
+            <div class="hello">
+                <h2>Analyze</h2>
+                <hr class="solid"/>
+                <div class="analyzedata-wrap">
+                  <nav class="analyzedata">
+                    <div>Username <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg></div>
+                    <div>Date <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg></div>
+                    <div>Time </div>
+                    <div>Result </div>
+                  </nav>
+                  <div class="assessAnalyze"></div>
+                </div>
+              <div class="charts">
+                <div id="my-pie-chart-container">
+                    <h2 class="rate">Success Rate</h2>
+                    <div id="my-pie-chart"></div>
+                    <div id="legenda">
+                      <div class="entry">
+                        <div id="color-green" class="entry-color"></div>
+                        <div class="entry-text">Passed</div>
+                      </div>
+                      <div class="entry">
+                        <div id="color-red" class="entry-color"></div>
+                        <div class="entry-text">Failed</div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
           </div>
         );
       }
