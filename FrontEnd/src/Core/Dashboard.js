@@ -451,6 +451,23 @@ class Dashboard extends React.Component {
     return indents;
   }
 
+  drawQuestionCircles(id) {
+    var indents = [];
+    var j = 0;
+    for (var i = 0; i < id; i++) {
+      indents.push(
+        <div>
+
+        </div>
+      )
+      ++j;
+      if (j == 5) {
+        indents.push(<br/>)
+      }
+    }
+    return indents
+  }
+
   drawCurrentAnswers() {
     var indents = [];
     for (var i = 0; i < answersSize; i++) {
