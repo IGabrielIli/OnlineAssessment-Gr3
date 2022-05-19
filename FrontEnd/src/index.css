@@ -762,6 +762,28 @@ ul{
 }
 
 .submitquestionbtn{
+  position:absolute ;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  background: #ffffff;
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: white;
+  width: 200px;
+  font-size: 20px;
+  padding: 6px 8px 8px 8px;
+  text-decoration: none;
+}
+
+.submitexambtn{
   float: right;
   margin-left: 600px;
   float: inline-end;
@@ -783,7 +805,7 @@ ul{
   text-decoration: none;
 }
 
-.submitquestiondiv{
+.submitexamdiv{
   position: absolute;
   top: 0;
   right: 0;
@@ -798,6 +820,14 @@ ul{
   margin-top: 670px;
   margin-left:190px ;
   margin-bottom: 30px;
+  margin-right: 100px;
+}
+
+.submitquestiondiv{
+  position:absolute ;
+  top: 0;
+  right: 0;
+  margin-top: 190px;
   margin-right: 100px;
 }
 

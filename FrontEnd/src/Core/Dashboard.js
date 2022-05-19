@@ -87,7 +87,7 @@ class Dashboard extends React.Component {
                 <br></br>
               </div>
               <div class="submitexamdiv">
-                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Exam</button>
+                <button class="submitexambtn" type="button" style={{color:"#04293A"}} >Save Exam</button>
               </div>
             </div>
           
@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
               <h2 style={{marginLeft: "60px"}}>New Question </h2>
             </div>
             <div class="submitquestiondiv">
-                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Submit Question</button>
+                <button class="submitquestionbtn" type="button" style={{color:"#04293A"}} >Save Question</button>
               </div>
               <br></br>
             <hr class="solid"/>
