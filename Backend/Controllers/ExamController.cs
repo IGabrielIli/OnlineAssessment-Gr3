@@ -77,5 +77,27 @@ namespace Backend.Controllers
             }
             return exams.ToArray();
         }
+        [HttpGet("byId")]
+        public Exam Get(string id)
+        {
+            var rq = OracleConnect.ReaderQuery("Select * from Exam where ExamId=\'" + id.ToString() + "\'");
+            Exam exam = new Exam();
+            if (rq != null)
+            {
+                rq.Read();
+                exam.ExamId = id.ToString();
+                exam.UserId = rq["UserId"].ToString();
+                exam.ExamName = rq["ExamName"].ToString();
+                exam.ExamDate = rq["ExamStartDate"].ToString();
+                exam.ExamCategory = rq["ExamCategory"].ToString();
+                exam.ExamPassword = rq["ExamPassword"].ToString();
+                exam.ExamTimerSeconds = rq["ExamTimerSeconds"].ToString();
+                exam.ExamDescription = rq["ExamDescription"].ToString();
+                exam.ExamAvgDifficulty = rq["ExamAvgDifficulty"].ToString();
+                exam.ExamQuestionAmount = rq["ExamQuestionAmount"].ToString();
+                rq.Dispose();
+            }
+            return exam;
+        }
     }
 }
