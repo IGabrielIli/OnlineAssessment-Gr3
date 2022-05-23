@@ -440,6 +440,25 @@ class Dashboard extends React.Component {
           </div>
         );
       }
+
+      case "duringexam": {
+        return (
+          <div>
+            <div class="hello">
+                <h2 style={{marginLeft: "60px"}}>Exam Name </h2>
+                <hr class="solid"/>
+            </div>
+            <p class="quenumber">Question number :</p>
+            <div class="assessduringexam"></div>
+            <div class="questioncirlescontainer">
+                {this.drawQuestionCircles()}
+            </div>
+            <input type="button" class = "nextque" onclick="/" value="Next Question" />
+            <input type="button" class = "prevque" onclick="/" value="Previous Question" />
+            <input type="button" class = "submitexam" onclick="/" value="Submit Exam" />
+          </div>
+          )
+      }
     }
   }
 
@@ -454,16 +473,13 @@ class Dashboard extends React.Component {
   drawQuestionCircles(id) {
     var indents = [];
     var j = 0;
-    for (var i = 0; i < id; i++) {
+    for (var i = 0; i < 30; i++) {
+      
       indents.push(
-        <div>
-
+        <div class="questioncircles">
+          
         </div>
-      )
-      ++j;
-      if (j == 5) {
-        indents.push(<br/>)
-      }
+      )  
     }
     return indents
   }
