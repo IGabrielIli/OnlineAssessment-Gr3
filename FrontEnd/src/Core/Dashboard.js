@@ -119,6 +119,10 @@ class Dashboard extends React.Component {
                 <br></br>
                 <br></br>
               </div>
+              <div class="discriptiondiv">
+                <label for="quantity" style={{marginBottom:"10px",color:"white",fontSize:"30px"}}>Exam Discription: </label><br></br>
+                <textarea class="examdiscription" ></textarea>
+              </div>
               <div class="submitexamdiv">
                 <button class="submitexambtn" type="button" style={{color:"#04293A"}} >Save Exam</button>
               </div>
@@ -399,6 +403,13 @@ class Dashboard extends React.Component {
           </div>
         );
       }
+      case "beforeexam": {
+        return (
+          <div>
+            
+          </div>
+        );
+      }
       case "analyze": {
         var passedPercentage = this.getPassedPercentage(document.cookie)
         var notPassedPercentage = this.getNotPassedPercentage(document.cookie)
@@ -457,7 +468,7 @@ class Dashboard extends React.Component {
     for (var i = 0; i < id; i++) {
       indents.push(
         <div>
-
+          
         </div>
       )
       ++j;
