@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
       test: "1",
       curExam: [],
     };
+    return;
     // https://localhost:7299/api/Exam/byUserId?id=
     var url = "https://localhost:7299/api/Exam/byUserId?id=" + this.state.curId;
     fetch(url)
@@ -180,7 +181,7 @@ class Dashboard extends React.Component {
             </div>
             <hr class="solid"/>
             <div class="assessExam">
-              {this.drawAssessments()}
+              {this.drawQuestion()}
             </div>
            </div>
         );
@@ -648,9 +649,26 @@ class Dashboard extends React.Component {
   }
 
   drawQuestion(id) {
+    var link = "/Dashboard?test=".concat(this.state.questions[id]["questionId"]);
+    var edit_link = "/edit?id=".concat(this.state.questions[id]["questionId"]);
     return (
       <div class="assesskid">
-        
+        <span class="assesskidname">
+            <a href={link}>{this.state.questions[id]["questionTitle"]}</a>
+            <span class="assesskidbut">
+              <FontAwesomeIcon icon={faEllipsis} />
+            </span>
+            <span class="assesskidbut">
+              <Link to={(edit_link)}>
+                <FontAwesomeIcon icon={faPencil} />
+              </Link>
+            </span>
+            <br/>
+            <span class="assesskiddate">Date created: {this.state.exams[id]["examDate"]}</span>
+          </span>
+
+          <br/>
+          <br/>
       </div>
     );
   }
