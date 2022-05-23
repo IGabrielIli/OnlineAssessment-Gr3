@@ -61,5 +61,27 @@ namespace Backend.Controllers
             }
             return question;
         }
+
+        [HttpGet("all")]
+        public IEnumerable<Question> GetAll()
+        {
+            var rq = OracleConnect.ReaderQuery("Select * from Question");
+            IEnumerable<Question> questions = new List<Question>();
+            if (rq != null)
+            {
+                while (rq.Read())
+                {
+                    Question question = new Question();
+                    question.QuestionId = rq["QuestionId"].ToString();
+                    question.QuestionImageUrl = rq["QuestionImageURL"].ToString();
+                    question.QuestionText = rq["QuestionText"].ToString();
+                    question.QuestionType = rq["QuestionType"].ToString();
+                    question.QuestionDifficulty = rq["QuestionDifficulty"].ToString();
+                    questions = questions.Append(question);
+                }
+                rq.Dispose();
+            }
+            return questions.ToArray();
+        }
     }
 }

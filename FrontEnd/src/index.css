@@ -1079,6 +1079,101 @@ padding-right: -50px;
   background-color: green;
 }
 
+.questioncircles{
+  float: right;  
+  width: 35px;  
+  height: 35px;  
+  font-size: 20px;
+  text-align:center;
+  border: 2px solid #f9f9f9;  
+  border-radius: 50%; 
+  color: white;
+}
+
+.questioncirlescontainer{
+  float: right;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 13px;
+  padding-right: 10px;
+  margin-top: -520px;
+}
+
+.assessduringexam{
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y:auto;
+  border:#04293A;
+  border-top: #04293A;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-right: 14px;
+  height: 55vh;
+  width: 70%;
+  background-color: ghostwhite;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.submitexam{
+  border: 1px solid black ;
+  border-radius: 50px;
+  margin-top: 30px;
+  float: right;
+  font-size: 17px;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  background-color:red ;
+  margin-right: 10px;
+}
+
+.nextque{
+  border: 1px solid black ;
+  border-radius: 50px;
+  margin-top: 30px;
+  font-size: 17px;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  background-color:#05354b ;
+  margin-left: 985px;
+}
+
+.prevque{
+  border: 1px solid black ;
+  border-radius: 50px;
+  margin-top: 30px;
+  float: left;
+  font-size: 17px;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  background-color:#7f7f7f ;
+  margin-left:95px; 
+}
+
+.quenumber{
+  display: grid;
+  float: left;
+  padding-left: 70px;
+  padding-top: 30px;
+  font-size: 23px;
+  color: white;
+}
+
+.submitexam:hover{
+  background-color: darkred ;
+}
+
+.nextque:hover {
+  background-color:#04293A ;
+}
+
+.prevque:hover {
+  background-color: #595959;
+}
+
 .examdiscription{
   width: 500px;
   height: 100px;
@@ -1089,4 +1184,5 @@ padding-right: -50px;
   margin-top: 20px;
   float: left;
   margin-left: 300px;
+
 }

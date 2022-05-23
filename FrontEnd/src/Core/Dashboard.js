@@ -13,9 +13,51 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tab: "main",
-      curId: 0,//this.getParameterByName("id") ,
+      curId: document.cookie,
+      exams: [],
+      questions: [],
+      test: "1",
+      curExam: [],
     };
-    //console.log(this.state.curId);
+    // https://localhost:7299/api/Exam/byUserId?id=
+    var url = "https://localhost:7299/api/Exam/byUserId?id=" + this.state.curId;
+    fetch(url)
+    .then(response => response.text())
+    .then(data => {
+        var k = this.getParameterByName("test");
+        if (k != null) {
+          this.setState({
+            tab: "beforeexam",
+          })
+          var urlex = "https://localhost:7299/api/Exam/byId?id=" + k;
+          fetch(urlex)
+          .then(response => response.text())
+          .then(data => {
+            this.setState({
+              curExam: JSON.parse(data),
+            });
+            console.log(this.state.curExam);
+          });
+        }
+        if (data != "[]") {
+          this.setState({
+            exams: JSON.parse(data),
+          });
+          console.log(this.state.exams);
+        }
+    });
+    var urlq = "https://localhost:7299/api/Question/all"
+    fetch(urlq)
+    .then(response => response.text())
+    .then(data => {
+      if (data != "[]") {
+        console.log(data);
+        this.setState({
+          questions: JSON.parse(data),
+        });
+        console.log(this.state.questions);
+      }
+    })
   }
 
   getParameterByName(name, url = window.location.href) {
@@ -392,10 +434,10 @@ class Dashboard extends React.Component {
         return (
           <div>
             <div class="hello">
-                <center><h2>Exam title</h2>
+                <center><h2>{this.state.curExam["examName"]}</h2>
                 
             <hr class="solid"/>
-            <div class="assessbeforeexam"></div>
+            <div class="assessbeforeexam">{this.state.curExam["examDescription"]}</div>
             <input type="button" class = "startbutton" onclick="/duringexam;" value="Start your try" />
             <input type="button" class = "backbutton" onclick="/dashboard;" value="Back" />
 
@@ -452,30 +494,44 @@ class Dashboard extends React.Component {
           </div>
         );
       }
+
+      case "duringexam": {
+        return (
+          <div>
+            <div class="hello">
+                <h2 style={{marginLeft: "60px"}}>Exam Name </h2>
+                <hr class="solid"/>
+            </div>
+            <p class="quenumber">Question number :</p>
+            <div class="assessduringexam"></div>
+            <div class="questioncirlescontainer">
+                {this.drawQuestionCircles()}
+            </div>
+            <input type="button" class = "nextque" onclick="/" value="Next Question" />
+            <input type="button" class = "prevque" onclick="/" value="Previous Question" />
+            <input type="button" class = "submitexam" onclick="/" value="Submit Exam" />
+          </div>
+          )
+      }
     }
   }
 
   drawAssessments() {
     var indents = [];
-    for (var i = 0; i < 20; i++) {
-      indents.push(this.drawAssessment());
+    for (var i = 0; i < this.state.exams.length; i++) {
+      indents.push(this.drawAssessment(i));
     }
     return indents;
   }
 
   drawQuestionCircles(id) {
     var indents = [];
-    var j = 0;
-    for (var i = 0; i < id; i++) {
+    for (var i = 0; i < 99; i++) {
       indents.push(
-        <div>
-          
+        <div class="questioncircles">
+          {i}
         </div>
-      )
-      ++j;
-      if (j == 5) {
-        indents.push(<br/>)
-      }
+      )  
     }
     return indents
   }
@@ -561,14 +617,13 @@ class Dashboard extends React.Component {
   }
 
   drawAssessment(id) {
-    var link = "/exam?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
-    var edit_link = "/edit?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
+    var link = "/Dashboard?test=".concat(this.state.exams[id]["examId"]);
+    var edit_link = "/edit?id=".concat(this.state.exams[id]["examId"]);
     return (
         <div class="assesskid">
           <span class="assesskidname">
-            <Link to={link}>{fetchDynamicItem(DBType.ASSESSMENT_NAME)}</Link>
+            <a href={link}>{this.state.exams[id]["examName"]}</a>
             <span class="assesskidbut">
-
               <FontAwesomeIcon icon={faEllipsis} />
             </span>
             <span class="assesskidbut">
@@ -583,12 +638,20 @@ class Dashboard extends React.Component {
               <FontAwesomeIcon icon={faChartColumn} />
             </a>
             <br/>
-            <span class="assesskiddate">Date created: {fetchDynamicItem(DBType.ASSESSMENT_DATE)}</span>
+            <span class="assesskiddate">Date created: {this.state.exams[id]["examDate"]}</span>
           </span>
 
           <br/>
           <br/>
         </div>
+    );
+  }
+
+  drawQuestion(id) {
+    return (
+      <div class="assesskid">
+        
+      </div>
     );
   }
 
