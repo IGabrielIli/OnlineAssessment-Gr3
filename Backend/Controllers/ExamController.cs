@@ -52,9 +52,9 @@ namespace Backend.Controllers
         }
 
         [HttpGet("byUserId")]
-        public IEnumerable<Exam> GetAll(int id)
+        public IEnumerable<Exam> GetAll(string id)
         {
-            var rq = OracleConnect.ReaderQuery("Select * from Exam where UserId=" + id.ToString());
+            var rq = OracleConnect.ReaderQuery("Select * from Exam where UserId=\'" + id.ToString() + "\'");
             IEnumerable<Exam> exams = new List<Exam>();
             if (rq != null)
             {

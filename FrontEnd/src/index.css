@@ -788,7 +788,8 @@ ul{
 
 .submitexambtn{
   float: right;
-  margin-left: 600px;
+  margin-top: 70px;
+  margin-right: 450px;
   float: inline-end;
   font-weight: bold;
   background: #ffffff;
@@ -1171,4 +1172,16 @@ padding-right: -50px;
 
 .prevque:hover {
   background-color: #595959;
+
+.examdiscription{
+  width: 500px;
+  height: 100px;
+  
+}
+
+.discriptiondiv{
+  margin-top: 20px;
+  float: left;
+  margin-left: 300px;
+
 }
