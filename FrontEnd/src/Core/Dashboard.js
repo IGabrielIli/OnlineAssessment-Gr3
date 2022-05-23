@@ -13,9 +13,23 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tab: "main",
-      curId: 0,//this.getParameterByName("id") ,
+      curId: document.cookie,
+      exams: []
     };
-    //console.log(this.state.curId);
+    // https://localhost:7299/api/Exam/byUserId?id=
+    var url = "https://localhost:7299/api/Exam/byUserId?id=" + this.state.curId;
+    fetch(url)
+    .then(response => response.text())
+    .then(data => {
+        if (data == "[]") {
+            
+        } else {
+          this.setState({
+            exams: JSON.parse(data),
+          });
+          console.log(this.state.exams);
+        }
+    });
   }
 
   getParameterByName(name, url = window.location.href) {
@@ -456,8 +470,8 @@ class Dashboard extends React.Component {
 
   drawAssessments() {
     var indents = [];
-    for (var i = 0; i < 20; i++) {
-      indents.push(this.drawAssessment());
+    for (var i = 0; i < this.state.exams.length; i++) {
+      indents.push(this.drawAssessment(i));
     }
     return indents;
   }
@@ -560,14 +574,13 @@ class Dashboard extends React.Component {
   }
 
   drawAssessment(id) {
-    var link = "/exam?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
-    var edit_link = "/edit?id=".concat(fetchDynamicItem(DBType.ASSESSMENT_ID));
+    var link = "/exam?id=".concat(this.state.exams[id]["examId"]);
+    var edit_link = "/edit?id=".concat(this.state.exams[id]["examId"]);
     return (
         <div class="assesskid">
           <span class="assesskidname">
-            <Link to={link}>{fetchDynamicItem(DBType.ASSESSMENT_NAME)}</Link>
+            <Link to={link}>{this.state.exams[id]["examName"]}</Link>
             <span class="assesskidbut">
-
               <FontAwesomeIcon icon={faEllipsis} />
             </span>
             <span class="assesskidbut">
@@ -582,7 +595,7 @@ class Dashboard extends React.Component {
               <FontAwesomeIcon icon={faChartColumn} />
             </a>
             <br/>
-            <span class="assesskiddate">Date created: {fetchDynamicItem(DBType.ASSESSMENT_DATE)}</span>
+            <span class="assesskiddate">Date created: {this.state.exams[id]["examDate"]}</span>
           </span>
 
           <br/>
