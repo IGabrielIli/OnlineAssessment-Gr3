@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
             <h1 style={{marginLeft: "25px"}}>Hello {fetchDynamicItem(DBType.USER_USERNAME)}</h1><br/>
             <h2 style={{marginLeft:"45px"} }>Learn <Link to="#help" onClick={() => this.onTabClick("help")}>how to create your own Exam</Link> or <Link to="#create" onClick={() => this.onTabClick("newexam")}>create one now</Link></h2><br/><br/>
             <hr class="solid"/>
-            <h3 style={{marginLeft: "25px"}}>Recent Assessmets</h3>
+            <h3 style={{marginLeft: "25px",color:"white"}}>Recent Assessmets</h3>
             <div class="assess">
               {this.drawAssessments()}
             </div>
@@ -325,6 +325,7 @@ class Dashboard extends React.Component {
                 <div class="hello">
                   <center><h2>{fetchDynamicItem(DBType.PROJECT_TITLE)} Documentation</h2></center>
                 </div>
+                <hr class="solid"/>
               <div class='help-body'>
                 <main id="main-doc">
                   <section class="main-section" id='Exams'>
@@ -384,7 +385,7 @@ class Dashboard extends React.Component {
                   </section>
                 </main>
               </div>
-            <hr class="solid"/>
+            
           </div>
         );
       case "beforeexam": {
