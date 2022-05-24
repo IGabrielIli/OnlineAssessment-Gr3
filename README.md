@@ -7,7 +7,8 @@ TBD
 [OnlineAssessUI Design.pdf](https://github.com/IGabrielIli/OnlineAssessment-Gr3/files/8681032/OnlineAssessUI.Design.pdf)
 
 ### Ερωτηματολόγιο UI
-![erwtim](https://user-images.githubusercontent.com/100962867/170122649-1dd3d2cc-1fc1-443d-9fbc-8e46ce60459b.png)
+![erwtim](https://user-images.githubusercontent.com/100962867/170123159-44ed6d50-3466-4bb1-87b2-6953fb283984.png)
+
 
 
 
