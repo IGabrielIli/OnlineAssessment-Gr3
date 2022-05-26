@@ -1,0 +1,12 @@
+create or replace PROCEDURE ADD_KEYWORD AS 
+n INTEGER:=0;
+keywordid VARCHAR(40):='KEYWORDID';
+keywordtext VARCHAR(20):='KEYWORDTEXT';
+BEGIN
+  FOR n IN 0..9 loop
+        keywordtext := 'KEYWORDTEXT'||n;
+        SELECT LOWER(STANDARD_HASH(keywordtext)) INTO keywordid FROM dual;
+        INSERT INTO KEYWORD(KEYWORDID,KEYWORDTEXT)VALUES(keywordid,keywordtext);
+    end loop;
+commit;
+END ADD_KEYWORD;

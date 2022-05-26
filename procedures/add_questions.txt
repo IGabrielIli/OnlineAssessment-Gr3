@@ -1,0 +1,23 @@
+create or replace PROCEDURE ADD_QUESTIONS IS 
+n INTEGER:=0;
+userid VARCHAR(40):='USERID';
+useremail VARCHAR(40):='USEREMAIL';
+questionid VARCHAR(40):='QUESTIONID';
+questionimageurl VARCHAR(100):='QUESTIONIMAGEURL';
+questiontext VARCHAR(300):='QUESTIONTEXT';
+questiondifficulty NUMBER(38):=4;
+questiontype CHAR:='C';
+BEGIN
+FOR m IN 1..1000 loop
+  FOR n IN 1..100 loop
+        questionimageurl:= 'QUESTIONIMAGEURL'||n ;
+        questiontext := 'QUESTIONTEXT'||m||'_'||n;
+        questiondifficulty := ROUND(DBMS_RANDOM.VALUE(1, 7));
+        useremail := 'USEREMAIL'||m||'@gmail.com';
+        SELECT LOWER(STANDARD_HASH(useremail)) INTO userid FROM dual;
+        SELECT LOWER (STANDARD_HASH(questiontext)) INTO questionid FROM dual;
+        INSERT INTO QUESTION(QUESTIONID,QUESTIONIMAGEURL,QUESTIONTEXT,QUESTIONDIFFICULTY,QUESTIONTYPE,USERID)VALUES(questionid,questionimageurl,questiontext,questiondifficulty,questiontype,userid);
+    end loop;
+end loop;
+commit;
+END ADD_QUESTIONS;

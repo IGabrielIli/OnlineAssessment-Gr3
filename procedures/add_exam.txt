@@ -1,0 +1,30 @@
+create or replace PROCEDURE ADD_EXAMS IS 
+n INTEGER:=0;
+k INTEGER:=0;
+examid VARCHAR(40):='EXAMID';
+userid VARCHAR(40):='USERID';
+useremail VARCHAR(40):='USEREMAIL';
+examavgdifficulty NUMBER:=4;
+examtimerseconds NUMBER:=5;
+examquestionamount NUMBER:=10;
+examname VARCHAR(40):='EXAMNAME';
+exampassword VARCHAR(20):='EXAMPASSWORD';
+examcategory VARCHAR(20):='EXAMCATEGORY';
+examdescription VARCHAR(300):='EXAMDESCRIPTION';
+examstartdate VARCHAR(50):='';
+BEGIN
+  FOR n IN 1..1000 loop
+        FOR k IN 1..10 loop
+            examname:= 'EXAMNAME'||k ;
+            exampassword := 'EXAMPASSWORD'||n||'_'||k;
+            examcategory := 'EXAMCATEGORY'||n||'_'||k;
+            examdescription := 'EXAMDESCRIPTION'||n||'_'||k;
+            examstartdate := ROUND(DBMS_RANDOM.VALUE(1, 28))  ||'/'||ROUND(DBMS_RANDOM.VALUE(1, 12))||'/2022';
+            useremail := 'USEREMAIL'||n||'@gmail.com';
+            SELECT LOWER(STANDARD_HASH(useremail)) INTO userid FROM dual;
+            SELECT LOWER (STANDARD_HASH(userid||examname)) INTO examid FROM dual;
+            INSERT INTO EXAM(EXAMID,USERID,EXAMAVGDIFFICULTY,EXAMTIMERSECONDS,EXAMQUESTIONAMOUNT,EXAMNAME,EXAMPASSWORD,EXAMCATEGORY,EXAMDESCRIPTION,EXAMSTARTDATE)VALUES(examid,userid,examavgdifficulty,examtimerseconds,examquestionamount,examname,exampassword,examcategory,examdescription,examstartdate);
+        end loop;
+    end loop;
+commit;
+END ADD_EXAMS;

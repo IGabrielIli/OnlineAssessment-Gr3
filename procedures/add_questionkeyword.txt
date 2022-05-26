@@ -1,0 +1,16 @@
+create or replace PROCEDURE ADD_QUESTIONKEYWORDS AS 
+n INTEGER:=0;
+questionid VARCHAR(40):='QUESTIONID';
+keywordid VARCHAR(40):='KEYWORDID';
+keywordtext VARCHAR(20):='KEYWORDTEXT';
+questiontext VARCHAR(300):='QUESTIONTEXT';
+BEGIN
+  FOR n IN 1..100000 loop
+        keywordtext := 'KEYWORDTEXT'||MOD(n,10);
+        questiontext :='QUESTIONTEXT'||n;
+        SELECT LOWER(STANDARD_HASH(keywordtext)) INTO keywordid FROM dual;
+        SELECT LOWER(STANDARD_HASH(questiontext)) INTO questionid FROM dual;
+        INSERT INTO QUESTIONKEYWORDS(QUESTIONID,KEYWORDID)VALUES(questionid,keywordid);
+    end loop;
+commit;
+END ADD_QUESTIONKEYWORDS;

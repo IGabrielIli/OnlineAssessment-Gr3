@@ -1,0 +1,20 @@
+create or replace PROCEDURE ADD_EXAMKEYWORDS AS 
+n INTEGER:=0;
+examid VARCHAR(40):='EXAMID';
+keywordid VARCHAR(40):='KEYWORDID';
+keywordtext VARCHAR(20):='KEYWORDTEXT';
+examname VARCHAR(40):='EXAMNAME';
+userid VARCHAR(40):='USERID';
+useremail VARCHAR(40):='USEREMAIL';
+BEGIN
+  FOR n IN 1..1000 loop
+        keywordtext := 'KEYWORDTEXT'||MOD(n,10);
+        examname :='EXAMNAME'||n;
+        useremail := 'USEREMAIL'||n||'@gmail.com';
+        SELECT LOWER(STANDARD_HASH(keywordtext)) INTO keywordid FROM dual;
+        SELECT LOWER(STANDARD_HASH(useremail)) INTO userid FROM dual;
+        SELECT LOWER (STANDARD_HASH(userid||examname)) INTO examid FROM dual;
+        INSERT INTO EXAMKEYWORDS(EXAMID,KEYWORDID)VALUES(examid,keywordid);
+    end loop;
+commit;
+END ADD_EXAMKEYWORDS;

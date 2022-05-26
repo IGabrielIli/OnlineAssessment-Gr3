@@ -1,0 +1,25 @@
+create or replace PROCEDURE ADD_USER IS 
+n INTEGER:=0;
+userid VARCHAR(40):='USERID';
+username VARCHAR(100):='USERNAME';
+userrealname VARCHAR(40):='USERREALNAME';
+useremail VARCHAR(40):='USEREMAIL';
+userpassword VARCHAR(40):='USERPASSWORD';
+userjobtitle VARCHAR(30):='USERJOBTITLE';
+BEGIN
+  FOR n IN 1..1000 loop
+        username:= username||n ;
+        userrealname := userrealname||n;
+        useremail := useremail||n||'@gmail.com';
+        SELECT LOWER(STANDARD_HASH(useremail)) INTO userid FROM dual;
+        userpassword := userpassword||n;
+        userjobtitle := userjobtitle||n;
+        INSERT INTO USERS(USERID,USERNAME,USERREALNAME,USEREMAIL,USERPASSWORD,USERJOBTITLE)VALUES(userid,username,userrealname,useremail,userpassword,userjobtitle);
+        username:='USERNAME';
+        userrealname :='USERREALNAME';
+        useremail :='USEREMAIL';
+        userpassword :='USERPASSWORD';
+        userjobtitle :='USERJOBTITLE';
+    end loop;
+commit;
+END ADD_USER;
