@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "main",
+      tab: "duringexam",
       curId: document.cookie.split(';')[0],
       exams: [],
       questions: [],
