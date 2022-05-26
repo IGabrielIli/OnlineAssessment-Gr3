@@ -1080,14 +1080,30 @@ padding-right: -50px;
 }
 
 .questioncircles{
+  background-color: darkgrey;
+  padding-top: 4px;
   float: right;  
   width: 35px;  
   height: 35px;  
   font-size: 20px;
   text-align:center;
   border: 2px solid #f9f9f9;  
+  border-color: #04293A;
   border-radius: 50%; 
-  color: white;
+  color: #04293A;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.questioncircles:hover {
+  background: #5c5c5c;
+  background-image: -webkit-linear-gradient(top, #5c5c5c, #5c5c5c);
+  background-image: -moz-linear-gradient(top, #5c5c5c, #5c5c5c);
+  background-image: -ms-linear-gradient(top, #5c5c5c, #5c5c5c);
+  background-image: -o-linear-gradient(top, #5c5c5c, #5c5c5c);
+  background-image: linear-gradient(to bottom, #5c5c5c, #5c5c5c);
+  text-decoration: none;
+  
 }
 
 .questioncirlescontainer{
