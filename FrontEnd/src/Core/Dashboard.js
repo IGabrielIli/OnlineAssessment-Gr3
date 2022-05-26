@@ -7,12 +7,13 @@ import { faChartColumn, faPencil, faEllipsis } from '@fortawesome/free-solid-svg
 let answersSize = 2;
 let answersArray = [''];
 let selectedArray = [0];
+let newExamDetails = ['', '', '', '', '', '']
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "duringexam",
+      tab: "main",
       curId: document.cookie.split(';')[0],
       exams: [],
       questions: [],
@@ -20,9 +21,12 @@ class Dashboard extends React.Component {
       test: "1",
       curExam: [],
       curQuestions: [],
+      curAnswers: [],
       curQuestionId: 0,
     };
-    // https://localhost:7299/api/Exam/byUserId?id=
+    this.drawTabs = this.drawTabs.bind(this);
+    this.drawQuestions = this.drawQuestions.bind(this);
+    this.drawQuestion = this.drawQuestion.bind(this);
     if (this.state.curId == "") {
       return;
     }
@@ -50,7 +54,7 @@ class Dashboard extends React.Component {
             this.setState({
               curQuestions: JSON.parse(data),
             });
-            console.log(this.state.curQuestions);
+            this.onCircleClick(0);
           });
         }
         if (data != "[]") {
@@ -65,7 +69,6 @@ class Dashboard extends React.Component {
               this.setState({
                 questions: JSON.parse(data),
               });
-              console.log(this.state.questions)
             }
           })
         }
@@ -119,6 +122,39 @@ class Dashboard extends React.Component {
 
   onTabClick(id) {
     this.setState({tab: id});
+  }
+
+  onNewExamClick() {
+    var details = {
+      "ExamId": "",
+      "ExamDescription": newExamDetails[0],
+      "UserRealName": newExamDetails[1],
+      "UserEmail": newExamDetails[2],
+      "UserPasswordMD5": newExamDetails[3],
+      "UserJobTitle": newExamDetails[5],
+      "UserId": "",
+    };
+    var formBody = [];
+    for (var property in details) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(details[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    var url = 'https://localhost:7299/api/Exam';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formBody
+    })
+    .then(response => response.text())
+    .then(data => {
+        this.setState({
+          tab: "exams",
+        });
+    });
   }
 
   drawTabs() {
@@ -188,11 +224,11 @@ class Dashboard extends React.Component {
                 <br></br>
               </div>
               <div class="discriptiondiv">
-                <label for="quantity" style={{marginBottom:"10px",color:"white",fontSize:"30px"}}>Exam Discription: </label><br></br>
+                <label for="quantity" style={{marginBottom:"10px",color:"white",fontSize:"30px"}}>Exam Description: </label><br></br>
                 <textarea class="examdiscription" ></textarea>
               </div>
               <div class="submitexamdiv">
-                <button class="submitexambtn" type="button" style={{color:"#04293A"}} >Save Exam</button>
+                <button class="submitexambtn" type="button" style={{color:"#04293A"}} onClick={() => this.onNewExamClick()} >Save Exam</button>
               </div>
             </div>
           
@@ -520,10 +556,9 @@ class Dashboard extends React.Component {
           </div>
         );
       }
-
       case "duringexam": {
         if (this.state.curQuestions.length == 0)
-          return (<div></div>)
+          return (<div>No questions :(</div>)
         return (
           <div>
             <div class="hello">
@@ -531,7 +566,12 @@ class Dashboard extends React.Component {
                 <hr class="solid"/>
             </div>
             <p class="quenumber">Question number :</p>
-            <div class="assessduringexam">{this.state.curQuestions[this.state.curQuestionId]["questionText"]}</div>
+            <div class="assessduringexam">{this.state.curQuestions[this.state.curQuestionId]["questionText"]}
+            <br/>
+            <br/>
+            <br/>
+            {this.drawCurrentAnswers()}
+            </div>
             <div class="questioncirlescontainer">
                 {this.drawQuestionCircles()}
             </div>
@@ -552,13 +592,30 @@ class Dashboard extends React.Component {
     return indents;
   }
 
-  drawQuestionCircles(id) {
+  onCircleClick(id) {
+    var urlq = "https://localhost:7299/api/Answer/byQuestionId?id=" + this.state.questions[this.state.curQuestionId]["questionId"];
+    fetch(urlq)
+    .then(response => response.text())
+    .then(data => {
+      if (data != "[]") {
+        this.setState({
+          curAnswers: JSON.parse(data),
+        });
+        this.setState({
+          curQuestionId: id,
+        })
+        console.log(this.state.curAnswers)
+      }
+    })
+  }
+
+  drawQuestionCircles() {
     var indents = [];
     for (var i = 0; i < this.state.curQuestions.length; i++) {
       indents.push(
-        <div class="questioncircles">
+        <button class="questioncircles" onClick={this.onCircleClick.bind(this, i)}>
           {i}
-        </div>
+        </button>
       )  
     }
     return indents
@@ -566,7 +623,7 @@ class Dashboard extends React.Component {
 
   drawCurrentAnswers() {
     var indents = [];
-    for (var i = 0; i < answersSize; i++) {
+    for (var i = 0; i < this.state.curAnswers.length; i++) {
       indents.push(this.drawAnswer(i));
     }
     return indents;
@@ -575,56 +632,10 @@ class Dashboard extends React.Component {
   drawAnswer(id) {
     return (
       <div>
-        <div class="container">
-          <input type="checkbox" onChange={ (e) => this.handleSelectedChange(e, id) } />
-          <textarea class="answer"onChange={ (e) => this.handleAnswerChange(e, id) }></textarea>
-          <br></br>
-          <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-bold" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-              <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-underline" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-              <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-italic" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-              <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-list-ul" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-              <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-superscript" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-              <a href="#" class="questiontoolbar">
-                <Link to="#notifications" onClick={() => this.onTabClick("")}>
-                  <span class="fa-stack" style={{fontSize:"17px",marginTop:"5px"}}>
-                      <i class="fa fa-trash" style={{color: "white"}}></i>
-                  </span>
-                </Link>
-              </a>
-          <span class="checkmark" style={{marginRight:"28px"}} />
-        </div>
-        
-        
+        <label class="xcontainer" for={id}>
+          <span>{this.state.curAnswers[id]["answerText"]}</span>
+          <input id={id} type="checkbox"/>
+        </label>
       </div>
     )
   }
@@ -691,7 +702,6 @@ class Dashboard extends React.Component {
             <br/>
             <span class="assesskiddate">Difficulty: {this.state.questions[id]["questionDifficulty"]}</span>
           </span>
-
           <br/>
           <br/>
       </div>

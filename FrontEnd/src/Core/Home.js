@@ -33,18 +33,18 @@ class Home extends React.Component {
     onLoginClick(e) {
         var url = "https://localhost:7299/api/User/login?userName=" + loginDetails[0] + "&userPassword=" + loginDetails[1]
         fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                if (data == "-1" || data.length != 40) {
-                    this.setState({
-                        signupErrorText: "",
-                        signupSuccessText: "",
-                        loginErrorText: "Invalid username/password combination"})
-                } else {
-                    document.cookie = data + ";";
-                    window.location.href = 'Dashboard';
-                }
-            });
+        .then(response => response.text())
+        .then(data => {
+            if (data == "-1" || data.length != 40) {
+                this.setState({
+                    signupErrorText: "",
+                    signupSuccessText: "",
+                    loginErrorText: "Invalid username/password combination"})
+            } else {
+                document.cookie = data + ";";
+                window.location.href = 'Dashboard';
+            }
+        });
     }
     onSignupClick(e) {
         this.setState({

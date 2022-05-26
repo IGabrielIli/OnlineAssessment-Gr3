@@ -62,9 +62,9 @@ namespace Backend.Controllers
         }
 
         [HttpGet("byQuestionId")]
-        public IEnumerable<Answer> GetAll(int id)
+        public IEnumerable<Answer> GetAll(string id)
         {
-            var rq = OracleConnect.ReaderQuery("Select * from Answer where QuestionId=" + id.ToString());
+            var rq = OracleConnect.ReaderQuery("Select * from Answer where QuestionId=\'" + id.ToString() + "\'");
             IEnumerable<Answer> answers = new List<Answer>();
             if (rq != null)
             {

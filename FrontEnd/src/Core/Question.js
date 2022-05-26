@@ -4,7 +4,7 @@ class AnswerButton extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <label class="container" for={this.props.buttonId}>
+        <label class="xcontainer" for={this.props.buttonId}>
           <span>{this.props.description}</span>
           <input id={this.props.buttonId} type={this.props.buttonType} name={this.props.questionGroup}/>
           <span class={this.props.buttonType}></span>

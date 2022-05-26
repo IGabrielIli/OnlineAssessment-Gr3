@@ -1082,7 +1082,9 @@ padding-right: -50px;
 .questioncircles{
   background-color: darkgrey;
   padding-top: 4px;
-  float: right;  
+  float: right;
+  margin-left:0px;
+  margin-right:0px;
   width: 35px;  
   height: 35px;  
   font-size: 20px;
@@ -1116,7 +1118,6 @@ padding-right: -50px;
 }
 
 .assessduringexam{
-  display: flex;
   flex-wrap: wrap;
   overflow: scroll;
   overflow-x: auto;
