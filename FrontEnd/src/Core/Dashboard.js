@@ -16,8 +16,11 @@ class Dashboard extends React.Component {
       curId: document.cookie.split(';')[0],
       exams: [],
       questions: [],
+      userdata: [],
       test: "1",
       curExam: [],
+      curQuestions: [],
+      curQuestionId: 0,
     };
     // https://localhost:7299/api/Exam/byUserId?id=
     if (this.state.curId == "") {
@@ -39,27 +42,43 @@ class Dashboard extends React.Component {
             this.setState({
               curExam: JSON.parse(data),
             });
-            console.log(this.state.curExam);
+          });
+          var urlq = "https://localhost:7299/api/ExamQuestions/byId?id=" + k;
+          fetch(urlq)
+          .then(response => response.text())
+          .then(data => {
+            this.setState({
+              curQuestions: JSON.parse(data),
+            });
+            console.log(this.state.curQuestions);
           });
         }
         if (data != "[]") {
           this.setState({
             exams: JSON.parse(data),
           });
-          console.log(this.state.exams);
+          var urlq = "https://localhost:7299/api/Question/byUserId?id=" + this.state.curId
+          fetch(urlq)
+          .then(response => response.text())
+          .then(data => {
+            if (data != "[]") {
+              this.setState({
+                questions: JSON.parse(data),
+              });
+              console.log(this.state.questions)
+            }
+          })
         }
     });
-    var urlq = "https://localhost:7299/api/Question/all"
-    fetch(urlq)
+    
+    var urluser = "https://localhost:7299/api/User/byId?id=" + this.state.curId;
+    fetch(urluser)
     .then(response => response.text())
     .then(data => {
-      if (data != "[]") {
-        console.log(data);
-        this.setState({
-          questions: JSON.parse(data),
-        });
-        console.log(this.state.questions);
-      }
+      this.setState({
+        userdata: JSON.parse(data),
+      })
+      console.log(this.state.userdata);
     })
   }
 
@@ -187,7 +206,7 @@ class Dashboard extends React.Component {
             </div>
             <hr class="solid"/>
             <div class="assessExam">
-              {this.drawQuestion()}
+              {this.drawQuestions()}
             </div>
            </div>
         );
@@ -306,19 +325,19 @@ class Dashboard extends React.Component {
               <hr class="solidprofile"/>
               <div>
             <label class="profiledetailslabels">Username:</label>
-            <label class="details1">Username</label>
+            <label class="details1">{this.state.userdata["userName"]}</label>
           </div>
           <div>
             <label class="profiledetailslabels">Full Name:</label>
-            <label class="details1">Username:*</label>
+            <label class="details1">{this.state.userdata["userRealName"]}</label>
           </div>
           <div>
             <label class="profiledetailslabels">Email:</label>
-            <label class="details1">Username:*</label>
+            <label class="details1">{this.state.userdata["userEmail"]}</label>
           </div>
           <div>
             <label class="profiledetailslabels">Job Title:</label>
-            <label class="details1">Username:*</label>
+            <label class="details1">{this.state.userdata["userJobTitle"]}</label>
           </div>
           <button class="editprofilebutton"style={{marginLeft:"780px"}} onClick={() => this.onTabClick("editprofile")}>Edit</button>
           
@@ -445,8 +464,8 @@ class Dashboard extends React.Component {
                 
             <hr class="solid"/>
             <div class="assessbeforeexam">{this.state.curExam["examDescription"]}</div>
-            <input type="button" class = "startbutton" onclick="/duringexam;" value="Start your try" />
-            <input type="button" class = "backbutton" onclick="/dashboard;" value="Back" />
+            <input type="button" class = "startbutton" onClick={() => this.onTabClick("duringexam")} value="Start your try" />
+            <input type="button" class = "backbutton" value="Back" />
 
                 </center>
                </div>
@@ -503,6 +522,8 @@ class Dashboard extends React.Component {
       }
 
       case "duringexam": {
+        if (this.state.curQuestions.length == 0)
+          return (<div></div>)
         return (
           <div>
             <div class="hello">
@@ -510,7 +531,7 @@ class Dashboard extends React.Component {
                 <hr class="solid"/>
             </div>
             <p class="quenumber">Question number :</p>
-            <div class="assessduringexam"></div>
+            <div class="assessduringexam">{this.state.curQuestions[this.state.curQuestionId]["questionText"]}</div>
             <div class="questioncirlescontainer">
                 {this.drawQuestionCircles()}
             </div>
@@ -533,7 +554,7 @@ class Dashboard extends React.Component {
 
   drawQuestionCircles(id) {
     var indents = [];
-    for (var i = 0; i < 99; i++) {
+    for (var i = 0; i < this.state.curQuestions.length; i++) {
       indents.push(
         <div class="questioncircles">
           {i}
@@ -623,6 +644,14 @@ class Dashboard extends React.Component {
     answersArray[id] = e.target.value;
   }
 
+  drawQuestions() {
+    var indents = [];
+    for (var i = 0; i < this.state.questions.length; i++) {
+      indents.push(this.drawQuestion(i));
+    }
+    return indents;
+  }
+
   drawAssessment(id) {
     var link = "/Dashboard?test=".concat(this.state.exams[id]["examId"]);
     var edit_link = "/edit?id=".concat(this.state.exams[id]["examId"]);
@@ -655,22 +684,12 @@ class Dashboard extends React.Component {
   }
 
   drawQuestion(id) {
-    var link = "/Dashboard?test=".concat(this.state.questions[id]["questionId"]);
-    var edit_link = "/edit?id=".concat(this.state.questions[id]["questionId"]);
     return (
       <div class="assesskid">
         <span class="assesskidname">
-            <a href={link}>{this.state.questions[id]["questionTitle"]}</a>
-            <span class="assesskidbut">
-              <FontAwesomeIcon icon={faEllipsis} />
-            </span>
-            <span class="assesskidbut">
-              <Link to={(edit_link)}>
-                <FontAwesomeIcon icon={faPencil} />
-              </Link>
-            </span>
+            <span>{this.state.questions[id]["questionText"]}</span>
             <br/>
-            <span class="assesskiddate">Date created: {this.state.exams[id]["examDate"]}</span>
+            <span class="assesskiddate">Difficulty: {this.state.questions[id]["questionDifficulty"]}</span>
           </span>
 
           <br/>

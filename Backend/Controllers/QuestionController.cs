@@ -62,26 +62,24 @@ namespace Backend.Controllers
             return question;
         }
 
-        [HttpGet("all")]
-        public IEnumerable<Question> GetAll()
+        [HttpGet("byUserId")]
+        public IEnumerable<Question> UserGet(string id)
         {
-            var rq = OracleConnect.ReaderQuery("Select * from Question");
+            var rq = OracleConnect.ReaderQuery("Select * from Question where UserId=\'" + id.ToString() + "\'");
             IEnumerable<Question> questions = new List<Question>();
             if (rq != null)
-            {
-                while (rq.Read())
-                {
-                    Question question = new Question();
-                    question.QuestionId = rq["QuestionId"].ToString();
-                    question.QuestionImageUrl = rq["QuestionImageURL"].ToString();
-                    question.QuestionText = rq["QuestionText"].ToString();
-                    question.QuestionType = rq["QuestionType"].ToString();
-                    question.QuestionDifficulty = rq["QuestionDifficulty"].ToString();
-                    questions = questions.Append(question);
-                }
-                rq.Dispose();
+            while (rq.Read()) {
+                Question question = new Question();
+                question.QuestionId = rq["QuestionId"].ToString();
+                question.QuestionImageUrl = rq["QuestionImageURL"].ToString();
+                question.QuestionText = rq["QuestionText"].ToString();
+                question.QuestionType = rq["QuestionType"].ToString();
+                question.QuestionDifficulty = rq["QuestionDifficulty"].ToString();
+                question.UserId = rq["UserId"].ToString();
+                questions = questions.Append(question);
             }
-            return questions.ToArray();
+            rq.Dispose();
+            return questions;
         }
     }
 }

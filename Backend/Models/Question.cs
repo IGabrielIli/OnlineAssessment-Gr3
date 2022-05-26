@@ -7,6 +7,8 @@ namespace Backend
         public string? QuestionText { get; set; }
         public string? QuestionType { get; set; }
         public string? QuestionDifficulty { get; set; }
+
+        public string? UserId { get; set;}
         
     }
 }
