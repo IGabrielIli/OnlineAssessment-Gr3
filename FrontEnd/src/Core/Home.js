@@ -41,7 +41,7 @@ class Home extends React.Component {
                         signupSuccessText: "",
                         loginErrorText: "Invalid username/password combination"})
                 } else {
-                    document.cookie = data;
+                    document.cookie = data + ";";
                     window.location.href = 'Dashboard';
                 }
             });

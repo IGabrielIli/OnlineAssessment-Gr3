@@ -40,7 +40,7 @@ namespace Backend.Controllers
                 {
                 }
             } 
-            return "Fail";
+            return "fail";
         }
 
         [HttpGet("byId")]

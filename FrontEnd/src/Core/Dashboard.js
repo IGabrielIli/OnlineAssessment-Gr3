@@ -13,14 +13,16 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       tab: "main",
-      curId: document.cookie,
+      curId: document.cookie.split(';')[0],
       exams: [],
       questions: [],
       test: "1",
       curExam: [],
     };
-    return;
     // https://localhost:7299/api/Exam/byUserId?id=
+    if (this.state.curId == "") {
+      return;
+    }
     var url = "https://localhost:7299/api/Exam/byUserId?id=" + this.state.curId;
     fetch(url)
     .then(response => response.text())
@@ -86,6 +88,10 @@ class Dashboard extends React.Component {
     //         }
     //     });
     return "50"
+  }
+
+  onSignoutClick() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
   }
 
   getNotPassedPercentage(id) {
@@ -674,7 +680,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    
+    if (document.cookie == "")
+      return (<div>Error: not logged in</div>)
     return (
         <div class="app">
           <div>
@@ -699,7 +706,7 @@ class Dashboard extends React.Component {
                       </Link>
                       </a>
                       <a href="#" class="but">
-                      <Link to="../" onClick  >
+                      <Link to="../" onClick={() => this.onSignoutClick()}  >
                         <span class="fa-stack" style={{fontSize:"30px"}}>
                           <i class="fa fa-sign-out" style={{fontSize:"48px",color:"white",marginTop:"8px"}}></i>
                         </span>
